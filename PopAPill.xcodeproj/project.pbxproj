@@ -60,30 +60,9 @@
 		BE0774DA2D6FA7FF00568ADF /* PopAPillUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopAPillUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BE35E98C2D8C47E800A93732 /* Exceptions for "PopAPill" folder in "PopAPillTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Other/TestLogin.swift,
-			);
-			target = BE0774CF2D6FA7FF00568ADF /* PopAPillTests */;
-		};
-		BE35E98D2D8C4DE900A93732 /* Exceptions for "PopAPill" folder in "PopAPill" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Other/TestLogin.swift,
-			);
-			target = BE0774BF2D6FA7FE00568ADF /* PopAPill */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BE0774C22D6FA7FE00568ADF /* PopAPill */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				BE35E98D2D8C4DE900A93732 /* Exceptions for "PopAPill" folder in "PopAPill" target */,
-				BE35E98C2D8C47E800A93732 /* Exceptions for "PopAPill" folder in "PopAPillTests" target */,
-			);
 			path = PopAPill;
 			sourceTree = "<group>";
 		};
