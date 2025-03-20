@@ -4,10 +4,40 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Copy of PopAPill.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
 		<key>PopAPill.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<key>Promises (Playground).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>BE0774BF2D6FA7FE00568ADF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE0774CF2D6FA7FF00568ADF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE0774D92D6FA7FF00568ADF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

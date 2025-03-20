@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "C1861C87-EA6C-464F-B976-C16696EC8FE3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PopAPill.xcodeproj",
+      "identifier" : "BE0774BF2D6FA7FE00568ADF",
+      "name" : "PopAPill"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:PopAPill.xcodeproj",
+        "identifier" : "BE0774CF2D6FA7FF00568ADF",
+        "name" : "PopAPillTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:PopAPill.xcodeproj",
+        "identifier" : "BE0774D92D6FA7FF00568ADF",
+        "name" : "PopAPillUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

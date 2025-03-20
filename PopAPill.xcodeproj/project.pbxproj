@@ -6,6 +6,37 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BE0775002D6FAADC00568ADF /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = BE0774FF2D6FAADC00568ADF /* FirebaseCore */; };
+		BE0775022D6FAADC00568ADF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BE0775012D6FAADC00568ADF /* FirebaseFirestore */; };
+		BE07759E2D7772D100568ADF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BE07759D2D7772D100568ADF /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		BE69444C2D899F14006C9030 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		BE69444D2D899F19006C9030 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		BE0774D12D6FA7FF00568ADF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +60,30 @@
 		BE0774DA2D6FA7FF00568ADF /* PopAPillUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopAPillUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BE35E98C2D8C47E800A93732 /* Exceptions for "PopAPill" folder in "PopAPillTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Other/TestLogin.swift,
+			);
+			target = BE0774CF2D6FA7FF00568ADF /* PopAPillTests */;
+		};
+		BE35E98D2D8C4DE900A93732 /* Exceptions for "PopAPill" folder in "PopAPill" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Other/TestLogin.swift,
+			);
+			target = BE0774BF2D6FA7FE00568ADF /* PopAPill */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BE0774C22D6FA7FE00568ADF /* PopAPill */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BE35E98D2D8C4DE900A93732 /* Exceptions for "PopAPill" folder in "PopAPill" target */,
+				BE35E98C2D8C47E800A93732 /* Exceptions for "PopAPill" folder in "PopAPillTests" target */,
+			);
 			path = PopAPill;
 			sourceTree = "<group>";
 		};
@@ -52,6 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0775002D6FAADC00568ADF /* FirebaseCore in Frameworks */,
+				BE07759E2D7772D100568ADF /* FirebaseAuth in Frameworks */,
+				BE0775022D6FAADC00568ADF /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +133,7 @@
 				BE0774C22D6FA7FE00568ADF /* PopAPill */,
 				BE0774D32D6FA7FF00568ADF /* PopAPillTests */,
 				BE0774DD2D6FA7FF00568ADF /* PopAPillUITests */,
+				BE07759C2D7772D100568ADF /* Frameworks */,
 				BE0774C12D6FA7FE00568ADF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +148,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BE07759C2D7772D100568ADF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,6 +167,8 @@
 				BE0774BE2D6FA7FE00568ADF /* Resources */,
 			);
 			buildRules = (
+				BE69444D2D899F19006C9030 /* PBXBuildRule */,
+				BE69444C2D899F14006C9030 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -112,6 +177,9 @@
 			);
 			name = PopAPill;
 			packageProductDependencies = (
+				BE0774FF2D6FAADC00568ADF /* FirebaseCore */,
+				BE0775012D6FAADC00568ADF /* FirebaseFirestore */,
+				BE07759D2D7772D100568ADF /* FirebaseAuth */,
 			);
 			productName = PopAPill;
 			productReference = BE0774C02D6FA7FE00568ADF /* PopAPill.app */;
@@ -195,6 +263,9 @@
 			);
 			mainGroup = BE0774B72D6FA7FE00568ADF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BE0774FE2D6FAADC00568ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BE0774C12D6FA7FE00568ADF /* Products */;
 			projectDirPath = "";
@@ -401,8 +472,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -429,8 +499,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,6 +554,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 89N7N93VH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = proJ.PopAPillUITests;
@@ -501,6 +571,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 89N7N93VH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = proJ.PopAPillUITests;
@@ -552,6 +623,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BE0774FE2D6FAADC00568ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BE0774FF2D6FAADC00568ADF /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE0774FE2D6FAADC00568ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		BE0775012D6FAADC00568ADF /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE0774FE2D6FAADC00568ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		BE07759D2D7772D100568ADF /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE0774FE2D6FAADC00568ADF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BE0774B82D6FA7FE00568ADF /* Project object */;
 }
