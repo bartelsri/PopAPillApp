@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Not {
+    var indetifer: String
+    var title: String
+    var body: String
+    var TimeInterval: Double
+    var repeats: Bool
+}

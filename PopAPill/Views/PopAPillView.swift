@@ -17,10 +17,10 @@ struct Item: Identifiable {
 }
 
 struct PopAPillView: View {
+    @StateObject var viewModel = PopAPillViewModel()
     
     //three items that belong to the user
-    let items = [
-        Item(title: "Receive Alerts", image: "bell.and.waves.left.and.right.fill", imageColor: .white, destination: AnyView(ReceiveAlertsView())),
+    let items = [Item(title: "Receive Alerts", image: "bell.and.waves.left.and.right.fill", imageColor: .white, destination: AnyView(ReceiveAlertsView().environmentObject(ReceiveAlertsViewModel()))),
         Item(title: "Confirm Medication", image: "questionmark.text.page.fill", imageColor: .white, destination: AnyView(ConfirmMedView())),
         Item(title: "Medication History", image: "heart.text.clipboard.fill", imageColor: .white, destination:AnyView(MedHistoryView()))
         
@@ -35,7 +35,7 @@ struct PopAPillView: View {
             
             
             
-            let colums = Array (
+            let colum = Array (
                 repeating: GridItem(.flexible(), spacing: spacing),
                 count: numberOfRows)
             
@@ -52,7 +52,7 @@ struct PopAPillView: View {
                 
                     .frame(width: UIScreen.main.bounds.width * 3, height: 600)
                 
-                    .offset(y:-100)
+                    .offset(y:-130)
                     
                     
                     //takes user to settings
@@ -70,7 +70,7 @@ struct PopAPillView: View {
                 }
                 
                 //grid containing the items
-                LazyVGrid(columns: colums, spacing: spacing){
+                LazyVGrid(columns: colum, spacing: spacing){
                     ForEach(items) { item in
                         
                         NavigationLink(destination: item.destination) {
@@ -87,6 +87,8 @@ struct PopAPillView: View {
             }
             
         }
+        .environmentObject(ReceiveAlertsViewModel())
+
     }
 }
 
@@ -115,7 +117,7 @@ struct ItemView: View {
                 
                 
             }
-            .frame(width: 360, height:140)
+            .frame(width: 350, height:150)
             .background(Color(red: 1.0, green: 0.81, blue: 0.86))
             .clipShape(RoundedRectangle(cornerRadius:20))
             .shadow(color: Color.black.opacity(0.17), radius: 10,y: 5)

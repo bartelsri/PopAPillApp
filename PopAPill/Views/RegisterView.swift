@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct RegisterView: View {
-    
+
     @StateObject var registerViewModel = RegisterViewModel()
     
     var body: some View {

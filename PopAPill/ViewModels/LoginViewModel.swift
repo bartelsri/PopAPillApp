@@ -38,6 +38,10 @@ class LoginViewModel: ObservableObject {
             errorM = "Enter a valid email"
             return false
         }
+        guard password.count >= 6 else {
+             errorM = "Password must be at least 6 characters long"
+             return false
+         }
         return true
     }
 }

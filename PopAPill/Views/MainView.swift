@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
     
+    
     var body: some View {
             //Shows from the login view view if signed in
         if viewModel.isSignedIn, !viewModel.currID.isEmpty {
@@ -19,6 +20,8 @@ struct MainView: View {
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
+                
+               
                 
               /*  ProfileView()
                     .tabItem {

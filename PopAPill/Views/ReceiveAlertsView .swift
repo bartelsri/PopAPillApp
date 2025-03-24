@@ -5,17 +5,50 @@
 //  Created by jossyris on 3/17/25.
 //
 
+import Foundation
 import SwiftUI
 
+
 struct ReceiveAlertsView: View {
+    @EnvironmentObject var alertView: ReceiveAlertsViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            //title
+            Text("Receive Alerts")
+                .bold()
+                .font(.system(size:30))
+            GroupBox{
+                Button("Notification"){
+                    Task{
+                        let not = Not(indetifer: UUID().uuidString,
+                                      title: "title",
+                                      body: "body", TimeInterval: 5,
+                                      repeats: false)
+                        await alertView.schedule(not: not)
+                    }
+                }
+            } label: {
+                Label("Receive", systemImage: "bell")
+            }
+            
+          /*  Text("")
+            
+                .task{
+                    do {
+                        try await alertView.requestAuthorization()
+                    } catch {
+                        print("")
+                    }
+                }*/
+        }
     }
+    
 }
 
 struct ReceiveAlertsView_Previews: PreviewProvider {
     static var previews: some View {
-        
         ReceiveAlertsView()
+            .environmentObject(ReceiveAlertsViewModel())
     }
 }
+
