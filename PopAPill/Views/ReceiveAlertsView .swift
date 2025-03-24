@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ReceiveAlertsView: View {
     @EnvironmentObject var alertView: ReceiveAlertsViewModel
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         VStack{
             //title
@@ -30,6 +31,9 @@ struct ReceiveAlertsView: View {
             } label: {
                 Label("Receive", systemImage: "bell")
             }
+                    
+                }
+            }
             
           /*  Text("")
             
@@ -40,6 +44,9 @@ struct ReceiveAlertsView: View {
                         print("")
                     }
                 }*/
+        
+        
+            
         }
     }
     
