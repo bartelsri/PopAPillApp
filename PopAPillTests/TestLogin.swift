@@ -7,9 +7,12 @@
 
 import XCTest
 @testable import PopAPill
+
+
 class TestLogin: XCTestCase {
     
     var viewModel: LoginViewModel!
+
     
     override func setUp() {
         super.setUp( )
@@ -19,6 +22,9 @@ class TestLogin: XCTestCase {
         viewModel = nil
         super.tearDown()
        }
+  
+  
+  
     
     //Testing user: for an empty password
     func testEmptyPassword(){
@@ -95,3 +101,7 @@ class TestLogin: XCTestCase {
 
 
 }
+
+    
+    
+
