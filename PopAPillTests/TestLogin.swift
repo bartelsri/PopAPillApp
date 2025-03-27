@@ -11,7 +11,7 @@ import XCTest
 
 class TestLogin: XCTestCase {
     
-    var  viewModel: LoginViewModel!
+    var viewModel: LoginViewModel!
 
     
     override func setUp() {
