@@ -4,27 +4,26 @@
 //
 // created by bartelsri on 3/25/25
 
-//test commit/pull
 import XCTest
 @testable import PopAPill
 
 class TestModifyMedication : XCTestCase {
 
-    var medication: ModifyMedication!
+    var medication: ModifyMedicationViewModel!
 
-    override fun setUp(){
+    override func setUp(){
         super.setUp()
-        medication = ModifyMedication()
+        medication = ModifyMedicationViewModel()
     }
 
-    override fun tearDown(){
+    override func tearDown(){
         medication = nil
         super.tearDown()
     }
 
     // test case: modify medication with valid data
     func testModifyMedicationWithValidData(){
-        medication.name = "Test Medication"
+        medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "Pill"
         medication.frequency = "2"
@@ -36,7 +35,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: modify medication with invalid dosage
     func testModifyMedicationWithInvalidDosage(){
-        medication.name = "Test Medication"
+        medication.medName = "Test Medication"
         medication.dosage = "-1"
         medication.unit = "Pill"
         medication.frequency = "2"
@@ -47,7 +46,7 @@ class TestModifyMedication : XCTestCase {
     }
     // test case: modify medication with empty dosage
      func testModifyMedicationWithInvalidDosage(){
-         medication.name = "Test Medication"
+         medication.medName = "Test Medication"
          medication.dosage = ""
          medication.unit = "Pill"
          medication.frequency = "2"
@@ -59,7 +58,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: modify medication with invalid unit
     func testModifyMedicationWithInvalidUnit(){
-        medication.name = "Test Medication"
+        medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "3"
         medication.frequency = "2"
@@ -71,7 +70,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: modify medication with empty unit
     func testModifyMedicationWithInvalidUnit(){
-        medication.name = "Test Medication"
+        medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = ""
         medication.frequency = "2"
@@ -83,7 +82,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: modify medication with invalid frequency
     func testModifyMedicationWithInvalidFrequency(){
-        medication.name = "Test Medication"
+        medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "Pill"
         medication.frequency = "abc"
@@ -94,7 +93,7 @@ class TestModifyMedication : XCTestCase {
     }
     // test case: modify medication with empty frequency
     func testModifyMedicationWithInvalidFrequency(){
-        medication.name = "Test Medication"
+        medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "Pill"
         medication.frequency = ""
@@ -106,16 +105,16 @@ class TestModifyMedication : XCTestCase {
 
     // test case: add new medication with valid data
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "1", unit: "Pill", frequency: "2")
+        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "Pill", frequency: "2")
 
         let isValid = newMedication.validate()
         XCTAssertTrue(isValid)
         XCTAssertEqual(newMedication.errorM, "")
     }
 
-    // test case: add new medication with empty name
+    // test case: add new medication with empty medName
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "", dosage: "1", unit: "Pill", frequency: "2")
+        let newMedication = Medication(medName: "", dosage: "1", unit: "Pill", frequency: "2")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
@@ -124,7 +123,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: add new medication with invalid dosage
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "-1", unit: "Pill", frequency: "2")
+        let newMedication = Medication(medName: "New Medication", dosage: "-1", unit: "Pill", frequency: "2")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
@@ -133,7 +132,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: add new medication with empty dosage
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "", unit: "Pill", frequency: "2")
+        let newMedication = Medication(medName: "New Medication", dosage: "", unit: "Pill", frequency: "2")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
@@ -142,7 +141,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: add new medication with invalid unit
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "1", unit: "3", frequency: "2")
+        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "3", frequency: "2")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
@@ -150,7 +149,7 @@ class TestModifyMedication : XCTestCase {
     }
     // test case: add new medication with empty unit
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "1", unit: "", frequency: "2")
+        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "", frequency: "2")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
@@ -159,7 +158,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: add new medication with invalid frequency
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "1", unit: "Pill", frequency: "abc")
+        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "Pill", frequency: "abc")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
@@ -168,7 +167,7 @@ class TestModifyMedication : XCTestCase {
 
     // test case: add new medication with empty frequency
     func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(name: "New Medication", dosage: "1", unit: "Pill", frequency: "")
+        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "Pill", frequency: "")
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
