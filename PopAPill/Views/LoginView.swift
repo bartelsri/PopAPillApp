@@ -61,6 +61,13 @@ struct LoginView: View {
                     .frame(height:45)
                     .cornerRadius(8)
 
+                //toggle for user to select if a provider
+                Toggle(isOn: $viewModel.isProvider){
+                    Text("Are you a provider?")
+                        .front(.headline)
+                }
+                .padding()
+
                 //text field for provider ID if it is a provider
                 if viewModel.isProvider{
                     TextField("Provider ID", text: $viewModel.providerID)

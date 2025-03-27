@@ -13,15 +13,16 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var providerID = ""
     @Published var errorM = ""         //error message
-    @Published var showError = false   //flag to show error message
+    @Published var showError = false //flag to show error message
+    @Published var isProvider = false //checks whether provider or user
     
     init() {
     }
     
     //Function to handle user input before an attemptt\
-    func login(isProvider: Bool = false)  {
+    func login()  {
         
-        guard validate() else {
+        guard validate(isProvider: isProvider) else {
             showError = true
             return
         }
