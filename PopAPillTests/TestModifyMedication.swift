@@ -53,7 +53,7 @@ class TestModifyMedication : XCTestCase {
 
          let isValid = medication.validate()
          XCTAssertFalse(isValid)
-         XCTAssertEqual(medication.errorM, "Invalid dosage")
+         XCTAssertEqual(medication.errorM, "Fill in all fields")
      }
 
     // test case: modify medication with invalid unit
@@ -77,7 +77,7 @@ class TestModifyMedication : XCTestCase {
 
         let isValid = medication.validate()
         XCTAssertFalse(isValid)
-        XCTAssertEqual(medication.errorM, "Invalid unit")
+        XCTAssertEqual(medication.errorM, "Fill in all fields")
     }
 
     // test case: modify medication with invalid frequency
@@ -100,7 +100,7 @@ class TestModifyMedication : XCTestCase {
 
         let isValid = medication.validate()
         XCTAssertFalse(isValid)
-        XCTAssertEqual(medication.errorM, "Invalid frequency")
+        XCTAssertEqual(medication.errorM, "Fill in all fields")
     }
 
     // test case: add new medication with valid data
@@ -118,7 +118,7 @@ class TestModifyMedication : XCTestCase {
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid medication name")
+        XCTAssertEqual(newMedication.errorM, "Fill in all fields")
     }
 
     // test case: add new medication with invalid dosage
@@ -136,7 +136,7 @@ class TestModifyMedication : XCTestCase {
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid dosage")
+        XCTAssertEqual(newMedication.errorM, "Fill in all fields")
     }
 
     // test case: add new medication with invalid unit
@@ -153,7 +153,7 @@ class TestModifyMedication : XCTestCase {
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid unit")
+        XCTAssertEqual(newMedication.errorM, "Fill in all fields")
     }
 
     // test case: add new medication with invalid frequency
@@ -171,7 +171,7 @@ class TestModifyMedication : XCTestCase {
 
         let isValid = newMedication.validate()
         XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid frequency")
+        XCTAssertEqual(newMedication.errorM, "Fill in all fields")
     }
 
 }
