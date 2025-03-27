@@ -60,8 +60,15 @@ struct LoginView: View {
                     .background(Color(.secondarySystemBackground))
                     .frame(height:45)
                     .cornerRadius(8)
-                
-                
+
+                //text field for provider ID if it is a provider
+                if viewModel.isProvider{
+                    TextField("Provider ID", text: $viewModel.providerID)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .frame(height:45)
+                        .cornerRadius(8)
+                }
                 
                 
                 //Button for login
@@ -93,7 +100,7 @@ struct LoginView: View {
         }
         
         .padding()
-        
+
         .background(Color(red: 1.0, green: 0.81, blue: 0.86))
     }
 }
