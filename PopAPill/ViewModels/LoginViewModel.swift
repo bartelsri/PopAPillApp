@@ -11,6 +11,7 @@ import Foundation
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
+    @Published var providerID = ""
     @Published var errorM = ""         //error message
     @Published var showError = false   //flag to show error message
     
@@ -18,7 +19,7 @@ class LoginViewModel: ObservableObject {
     }
     
     //Function to handle user input before an attemptt\
-    func login()  {
+    func login(isProvider: Bool = false)  {
         
         guard validate() else {
             showError = true
@@ -52,7 +53,7 @@ class LoginViewModel: ObservableObject {
     
     
     //Validate a user before logging in
-    func validate() -> Bool {
+    func validate(isProvider: Bool = false) -> Bool {
         errorM = ""
         //Ensurs email and password aren't empty or have white space
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
@@ -72,6 +73,14 @@ class LoginViewModel: ObservableObject {
         guard password.count >= 6 else {
             errorM = "Password must be at least 6 characters long"
             return false
+        }
+
+        //check that provider ID is given
+        if isProvider{
+            guard !providerID.trimmingCharacters(in: .whitespaces).isEmpty else{
+                errorM = "Provider ID required"
+                return false
+            }
         }
         return true
     }
