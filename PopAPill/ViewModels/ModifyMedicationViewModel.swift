@@ -21,7 +21,7 @@ class ModifyMedicationViewModel: ObservableObject{
     @Published var showError = false   //flag to show error message
 
     func validate() -> Bool{
-        //checking for empty fields
+        // checking for empty fields
         if medName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || dosage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
             unit.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || frequency.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty{
              errorM = "Please fill in all fields"

@@ -33,7 +33,7 @@ class TestModifyMedication : XCTestCase {
         XCTAssertEqual(medication.errorM, "")
     }
 
-    //test case: modify medication with empty medication name
+    //test case:  modify medication with empty medication name
     func testModifyMedicationWithEmptyMedName(){
         medication.medName = ""
         medication.dosage = "1"
