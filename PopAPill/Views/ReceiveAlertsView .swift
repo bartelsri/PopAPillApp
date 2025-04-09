@@ -48,9 +48,7 @@ struct ReceiveAlertsView: View {
         
             
         }
-    }
-    
-}
+
 
 struct ReceiveAlertsView_Previews: PreviewProvider {
     static var previews: some View {

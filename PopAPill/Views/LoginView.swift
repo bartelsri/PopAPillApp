@@ -64,7 +64,7 @@ struct LoginView: View {
                 //toggle for user to select if a provider
                 Toggle(isOn: $viewModel.isProvider){
                     Text("Are you a provider?")
-                        .front(.headline)
+                        .font(.headline)
                 }
                 .padding()
 
