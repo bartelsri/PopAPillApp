@@ -14,7 +14,7 @@ struct ModifyMedView: View{
         //navigate to patient list and select to patient to modify medication for
         VStack{
             //navigate to patient list
-            NavigationLink(destination: PatientListView(selectedPatient: $selectePatient)){
+            NavigationLink(destination: PatientListView(selectedPatient: $selectedPatient)){
                 Text("Select Patient")
                 .font(.headline)
                 .padding()
