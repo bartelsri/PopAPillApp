@@ -21,8 +21,8 @@ class TestModifyMedication : XCTestCase {
         super.tearDown()
     }
 
-    // test case: modify medication with valid data
-    func testModifyMedicationWithValidData(){
+    // test case: modify or add medication with valid data
+    func testModifyOrAddMedicationWithValidData(){
         medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "Pill"
@@ -33,8 +33,8 @@ class TestModifyMedication : XCTestCase {
         XCTAssertEqual(medication.errorM, "")
     }
 
-    //test case:  modify medication with empty medication name
-    func testModifyMedicationWithEmptyMedName(){
+    //test case:  modify or add medication with empty medication name
+    func testModifyOrAddMedicationWithEmptyMedName(){
         medication.medName = ""
         medication.dosage = "1"
         medication.unit = "Pill"
@@ -45,8 +45,8 @@ class TestModifyMedication : XCTestCase {
         XCTAssertEqual(medication.errorM, "Please fill in all fields")
     }
 
-    // test case: modify medication with invalid dosage
-    func testModifyMedicationWithInvalidDosage(){
+    // test case: modify or add medication with invalid dosage
+    func testModifyOrAddMedicationWithInvalidDosage(){
         medication.medName = "Test Medication"
         medication.dosage = "-1"
         medication.unit = "Pill"
@@ -56,8 +56,8 @@ class TestModifyMedication : XCTestCase {
         XCTAssertFalse(isValid)
         XCTAssertEqual(medication.errorM, "Invalid dosage")
     }
-    // test case: modify medication with empty dosage
-     func testModifyMedicationWithEmptyDosage(){
+    // test case: modify or add medication with empty dosage
+     func testModifyOrAddMedicationWithEmptyDosage(){
          medication.medName = "Test Medication"
          medication.dosage = ""
          medication.unit = "Pill"
@@ -68,8 +68,8 @@ class TestModifyMedication : XCTestCase {
          XCTAssertEqual(medication.errorM, "Please fill in all fields")
      }
 
-    // test case: modify medication with invalid unit
-    func testModifyMedicationWithInvalidUnit(){
+    // test case: modify or add medication with invalid unit
+    func testModifyOrAddMedicationWithInvalidUnit(){
         medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "-1"
@@ -80,8 +80,8 @@ class TestModifyMedication : XCTestCase {
         XCTAssertEqual(medication.errorM, "Invalid unit")
     }
 
-    // test case: modify medication with empty unit
-    func testModifyMedicationWithEmptyUnit(){
+    // test case: modify or add medication with empty unit
+    func testModifyOrAddMedicationWithEmptyUnit(){
         medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = ""
@@ -92,8 +92,8 @@ class TestModifyMedication : XCTestCase {
         XCTAssertEqual(medication.errorM, "Please fill in all fields")
     }
 
-    // test case: modify medication with invalid frequency
-    func testModifyMedicationWithInvalidFrequency(){
+    // test case: modify or add medication with invalid frequency
+    func testModifyOrAddMedicationWithInvalidFrequency(){
         medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "Pill"
@@ -103,8 +103,8 @@ class TestModifyMedication : XCTestCase {
         XCTAssertFalse(isValid)
         XCTAssertEqual(medication.errorM, "Invalid frequency")
     }
-    // test case: modify medication with empty frequency
-    func testModifyMedicationWithEmptyFrequency(){
+    // test case: modify or add medication with empty frequency
+    func testModifyOrAddMedicationWithEmptyFrequency(){
         medication.medName = "Test Medication"
         medication.dosage = "1"
         medication.unit = "Pill"
@@ -114,76 +114,5 @@ class TestModifyMedication : XCTestCase {
         XCTAssertFalse(isValid)
         XCTAssertEqual(medication.errorM, "Please fill in all fields")
     }
-
-    // test case: add new medication with valid data
-    func testAddNewMedicationWithValidData(){
-        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "Pill", frequency: "2")
-
-        let isValid = newMedication.validate()
-        XCTAssertTrue(isValid)
-        XCTAssertEqual(newMedication.errorM, "")
-    }
-
-    // test case: add new medication with empty medName
-    func testAddNewMedicationWithEmptyMedName(){
-        let newMedication = Medication(medName: "", dosage: "1", unit: "Pill", frequency: "2")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Please fill in all fields")
-    }
-
-    // test case: add new medication with invalid dosage
-    func testAddNewMedicationWithInvalidDosage(){
-        let newMedication = Medication(medName: "New Medication", dosage: "-1", unit: "Pill", frequency: "2")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid dosage")
-    }
-
-    // test case: add new medication with empty dosage
-    func testAddNewMedicationWithEmptyDosage(){
-        let newMedication = Medication(medName: "New Medication", dosage: "", unit: "Pill", frequency: "2")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Please fill in all fields")
-    }
-
-    // test case: add new medication with invalid unit
-    func testAddNewMedicationWithInvalidUnit(){
-        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "-1", frequency: "2")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid unit")
-    }
-    // test case: add new medication with empty unit
-    func testAddNewMedicationWithEmptyUnit(){
-        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "", frequency: "2")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Please fill in all fields")
-    }
-
-    // test case: add new medication with invalid frequency
-    func testAddNewMedicationWithInvalidFrequency(){
-        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "Pill", frequency: "abc")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Invalid frequency")
-    }
-
-    // test case: add new medication with empty frequency
-    func testAddNewMedicationWithEmptyFrequency(){
-        let newMedication = Medication(medName: "New Medication", dosage: "1", unit: "Pill", frequency: "")
-
-        let isValid = newMedication.validate()
-        XCTAssertFalse(isValid)
-        XCTAssertEqual(newMedication.errorM, "Please fill in all fields")
-    }
-
 }
+
