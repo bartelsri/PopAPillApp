@@ -18,7 +18,7 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 // Header view
-                HeaderView(title: "Pop A Pill",
+                HeaderView(title: "Pop-A-Pill",
                            background: Color(red: 1.0, green: 0.71, blue: 0.76),
                            image: Image(systemName: "pill"))
                 Spacer()
