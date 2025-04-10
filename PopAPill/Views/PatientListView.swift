@@ -4,6 +4,7 @@
 //
 // created by bartelsri 3/26/25
 //
+//home page for healthcare providers?
 
 import SwiftUI
 
@@ -26,13 +27,14 @@ struct PatientListView: View{
     var body: some View{
         VStack{
             Text("Patient List")
+                .padding(30)
                 .font(.largeTitle)
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
             List(patients) {patient in 
                 HStack{
                     Text(patient.name)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
                     Spacer()
                     Button("Select"){
                         selectedPatient = patient

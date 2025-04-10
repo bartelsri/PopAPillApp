@@ -4,7 +4,7 @@
 //
 //  Created by jossyris on 3/4/25.
 //
-//Patient user home page view - can choose receive alerts, confirm medication intake, medical history, or view their HC provider
+//Patient user home page view - can choose receive alerts, confirm medication intake, medical history
 
 import SwiftUI
 
