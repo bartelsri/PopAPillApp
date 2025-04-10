@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModifyMedView: View{
+/* struct ModifyMedView: View{
 
     var body : some View {
 
@@ -64,4 +64,4 @@ struct ModifyMedView: View{
 
     }
 
-}
+} */
