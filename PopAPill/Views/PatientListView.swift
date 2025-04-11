@@ -4,7 +4,7 @@
 //
 // created by bartelsri 3/26/25
 //
-//home page for healthcare providers?
+//View of a list of patients and selecting one to view/modify their meds
 
 import SwiftUI
 
@@ -17,7 +17,7 @@ struct Patient: Identifiable{
 
 struct PatientListView: View{
     @Binding var selectedPatient: Patient?
-    //list of patients
+    //list of patients (hard coded)
     @State private var patients: [Patient] = [
         Patient(name: "Jack Johnson"),
         Patient(name: "Suzy Craw"),
@@ -26,6 +26,7 @@ struct PatientListView: View{
 
     var body: some View{
         VStack{
+            //showing "Patient List" as header in  a mauve/purple color
             Text("Patient List")
                 .padding(30)
                 .font(.largeTitle)
@@ -33,9 +34,11 @@ struct PatientListView: View{
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
             List(patients) {patient in 
                 HStack{
+                    //showing the names of patients in white color
                     Text(patient.name)
-                        .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
+                        .foregroundColor(.white)
                     Spacer()
+                    //showing the Select button (to select the patient) with a mauve button and white text
                     Button("Select"){
                         selectedPatient = patient
                     }
@@ -50,6 +53,7 @@ struct PatientListView: View{
 
         }
         .navigationTitle("Select Patient")
+        //entire background of page is the signature Pop-A-Pill pink
         .background(Color(red: 1.0, green: 0.81, blue: 0.86))
         .ignoresSafeArea()
     }

@@ -1,9 +1,8 @@
-//
-//  TestLoginProvider.swift
-//  PopAPillTests
-//
-//  Created by Stephanie on 3/26/25.
-//
+//TestLoginProvider.swift
+//PopAPillTests
+//Created by Stephanie on 3/26/25.
+//Unit tests for validating provider input during log in
+
 
 import XCTest
 @testable import PopAPill

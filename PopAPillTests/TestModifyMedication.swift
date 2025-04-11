@@ -1,8 +1,10 @@
-//
 // TestModifyMedication.swift
 // PopAPillTests
 //
-// created by bartelsri on 3/25/25
+//created by bartelsri on 3/25/25
+//Unit tests for validating provider inputs when modifying or adding medication
+
+
 
 import XCTest
 @testable import PopAPill
