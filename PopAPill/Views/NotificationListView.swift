@@ -6,30 +6,64 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct NotificationListView: View {
-    
     @Environment(\.dismiss) var dismiss
-    @State private var alertName: String = ""
-    @State private var selectedTime: String = ""
-    @State private var selectedDate: String = ""
-    
+    @StateObject  var viewModel = NotificationLocalViewModel()
+
     var body: some View {
+        NavigationView {
+            
+            List(viewModel.filteredNotifications, id: \.identifier) { notification in
+                VStack {
+                Text(notification.content.body)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.primary)
+                
+                
+                    Text("Date: \(viewModel.formateDate(from: notification.trigger))")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.primary)
+                
+                
+                Button(action: {
+                    viewModel.removePendingNotifications(with: notification.identifier)
+                }) {
+                    Text("Remove")
+                        .foregroundColor(.red)
+                    
+                }
+            }
+                .padding(8)
+                .cornerRadius(8)
+                .frame(maxWidth: .infinity)
+                .listRowInsets(EdgeInsets())
+
+        }
         
-        VStack {
-            
-            
-            
-            Button("close"){
-                dismiss()
+        .navigationBarTitle("Notification List")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Done") {
+                    dismiss()
+                    
+                }
                 
             }
-            
         }
-        .padding()
-        
-        
+        .onAppear {
+            
+            viewModel.getPendingNotifications()
+        }
+    
+    
+}
     }
+    
+  
+
 }
 
 struct NotificationList_Previews: PreviewProvider {
