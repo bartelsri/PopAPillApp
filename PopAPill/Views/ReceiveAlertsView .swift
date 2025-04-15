@@ -36,20 +36,26 @@ struct ReceiveAlertsView: View {
                         
                         isAddingNewAlert.toggle()
                     }) {
-                           
-                        Text("Add New Alert")
-                            .font(.headline)
-                            .frame(width:150, height: 300)
-                            .padding()
-                            .background(.white)
-                            .foregroundColor(Color.secondary)
-                            .cornerRadius(10)
-                            .padding(.horizontal, 20)
-                        
+                        VStack(spacing: 2){
+                            Image(systemName: "bell")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .offset(y:-90)
+
+                            
+                            Text("Add New Alert")
+                               // .font(.headline)
+                                
+                            
+                        }
+                        .frame(width:150, height: 300)
+                        .padding()
+                        .background(.white)
+                        .foregroundColor(Color.primary)
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
+                        .frame(width: 190, height: 100)
                     }
-                    .padding(.horizontal)
-                    .frame(width: 190)
-                    
                     .sheet(isPresented: $isAddingNewAlert) {
                         AddNewAlertView()
                         
@@ -59,20 +65,26 @@ struct ReceiveAlertsView: View {
                     Button(action: {
                         showingNotificationList.toggle()
                     }) {
-                        
-                        Text("Notification List")
-                            .font(.headline)
-                            .frame(width:150, height: 300)
-                            .padding()
-                            .background(.white)
-                            .foregroundColor(.secondary)
-                            .cornerRadius(10)
-                            .padding(.horizontal, 20)
-                        
+                        VStack(spacing: 1){
+                            Image(systemName: "list.bullet.below.rectangle")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .offset(y:-90)
+                            
+                            Text("Notification List")
+                                .font(.headline)
+                              
+                             
+                            
+                        }
+                        .frame(width:150, height: 300)
+                        .padding()
+                        .background(.white)
+                        .foregroundColor(.primary)
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
+                        .frame(width: 190)
                     }
-                    .padding(.horizontal)
-                    .frame(width: 190)
-
                     .sheet(isPresented: $showingNotificationList){
                         NotificationListView()
                     }
