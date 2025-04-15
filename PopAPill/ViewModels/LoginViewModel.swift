@@ -18,14 +18,14 @@ class LoginViewModel: ObservableObject {
     init() {
     }
     
-    //Function to handle user input before an attemptt\
+    //Function to handle user input before an attempt
     func login(isProvider: Bool = false)  {
         
         guard validate() else {
             showError = true
             return
         }
-        //login for user with Firebase Aurh
+        //login for user with Firebase Auth
         Auth.auth().signIn(withEmail: email, password: password){ user, error in
             
             if let error = error as NSError? {
@@ -55,7 +55,7 @@ class LoginViewModel: ObservableObject {
     //Validate a user before logging in
     func validate(isProvider: Bool = false) -> Bool {
         errorM = ""
-        //Ensurs email and password aren't empty or have white space
+        //Ensures email and password aren't empty or have white space
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
             
             errorM = "Fill in all fields"
