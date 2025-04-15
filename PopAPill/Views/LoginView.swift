@@ -21,6 +21,7 @@ struct LoginView: View {
                 HeaderView(title: "Pop-A-Pill",
                            background: Color(red: 1.0, green: 0.71, blue: 0.76),
                            image: Image(systemName: "pill"))
+                .frame(width: 350, height: 70)
                 Spacer()
                         
             VStack{

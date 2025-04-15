@@ -8,7 +8,7 @@ import XCTest
 @testable import PopAPill
 
 
-class TestLogin: XCTestCase {
+class TestLoginProvider: XCTestCase {
 
     var viewModel: LoginViewModel!
 
