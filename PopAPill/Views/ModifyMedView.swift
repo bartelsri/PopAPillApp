@@ -3,18 +3,18 @@
 // PopAPill
 //
 // created by bartelsri 3/26/25
-//
+//View for provider to modify/add medications
 
 import SwiftUI
 
-struct ModifyMedView: View{
+/* struct ModifyMedView: View{
 
     var body : some View {
 
         //navigate to patient list and select to patient to modify medication for
         VStack{
             //navigate to patient list
-            NavigationLink(destination: PatientListView(selectedPatient: $selectePatient)){
+            NavigationLink(destination: PatientListView(selectedPatient: $selectedPatient)){
                 Text("Select Patient")
                 .font(.headline)
                 .padding()
@@ -64,4 +64,4 @@ struct ModifyMedView: View{
 
     }
 
-}
+} */

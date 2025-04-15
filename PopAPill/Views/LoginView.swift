@@ -18,9 +18,10 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 // Header view
-                HeaderView(title: "Pop A Pill",
+                HeaderView(title: "Pop-A-Pill",
                            background: Color(red: 1.0, green: 0.71, blue: 0.76),
                            image: Image(systemName: "pill"))
+                .frame(width: 350, height: 70)
                 Spacer()
                         
             VStack{
@@ -60,6 +61,13 @@ struct LoginView: View {
                     .background(Color(.secondarySystemBackground))
                     .frame(height:45)
                     .cornerRadius(8)
+
+                //toggle for user to select if a provider
+                Toggle(isOn: $viewModel.isProvider){
+                    Text("Are you a provider?")
+                        .font(.headline)
+                }
+                .padding()
 
                 //text field for provider ID if it is a provider
                 if viewModel.isProvider{

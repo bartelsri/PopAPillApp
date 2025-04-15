@@ -13,19 +13,20 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var providerID = ""
     @Published var errorM = ""         //error message
-    @Published var showError = false   //flag to show error message
+    @Published var showError = false //flag to show error message
+    @Published var isProvider = false //checks whether provider or user
     
     init() {
     }
     
-    //Function to handle user input before an attempt
-    func login(isProvider: Bool = false)  {
+    //Function to handle user input before an attemptt\
+    func login()  {
         
-        guard validate() else {
+        guard validate(isProvider: isProvider) else {
             showError = true
             return
         }
-        //login for user with Firebase Auth
+        //login for user with Firebase Aurh
         Auth.auth().signIn(withEmail: email, password: password){ user, error in
             
             if let error = error as NSError? {
@@ -55,7 +56,7 @@ class LoginViewModel: ObservableObject {
     //Validate a user before logging in
     func validate(isProvider: Bool = false) -> Bool {
         errorM = ""
-        //Ensures email and password aren't empty or have white space
+        //Ensurs email and password aren't empty or have white space
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
             
             errorM = "Fill in all fields"

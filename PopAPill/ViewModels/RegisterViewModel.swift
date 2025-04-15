@@ -27,8 +27,15 @@ class RegisterViewModel: ObservableObject {
         
        //create the user
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result , error in
-            
+            if let error = error {
+                
+                DispatchQueue.main.async {
+                    self?.errorM = error.localizedDescription
+                }
+                return
+            }
             guard let userId = result?.user.uid else {
+                self?.errorM = "Could not create user"
                 return
             }
             self?.insertUser(id: userId )

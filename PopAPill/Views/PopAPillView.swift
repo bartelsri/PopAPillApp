@@ -4,6 +4,7 @@
 //
 //  Created by jossyris on 3/4/25.
 //
+//Patient user home page view - can choose receive alerts, confirm medication intake, medical history
 
 import SwiftUI
 
@@ -22,8 +23,8 @@ struct PopAPillView: View {
     //three items that belong to the user
     let items = [Item(title: "Receive Alerts", image: "bell.and.waves.left.and.right.fill", imageColor: .white, destination: AnyView(ReceiveAlertsView().environmentObject(ReceiveAlertsViewModel()))),
         Item(title: "Confirm Medication", image: "questionmark.text.page.fill", imageColor: .white, destination: AnyView(ConfirmMedView())),
-        Item(title: "Medication History", image: "heart.text.clipboard.fill", imageColor: .white, destination:AnyView(MedHistoryView()))
-        
+        Item(title: "Medication History", image: "heart.text.clipboard.fill", imageColor: .white, destination:AnyView(MedHistoryView())),
+                 /*Item(title: "Provider", image: "stethoscope", imageColor: .white, destination: AnyView(ProfileView())) //CORRECT DESTINATION (create HC provider page?) AND SPACING OF UI*/
     ]
     
     
