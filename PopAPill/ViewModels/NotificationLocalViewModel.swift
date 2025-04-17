@@ -49,11 +49,11 @@ public class NotificationLocalViewModel: ObservableObject {
             
             }
                 
-            
+            DispatchQueue.main.async{
                 self.filteredNotifications = filteredRequests
-            
-         }
-     }
+            }
+        }
+    }
     func removePendingNotifications(with identifer: String){
       UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifer])
          

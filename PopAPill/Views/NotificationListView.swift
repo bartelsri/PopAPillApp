@@ -15,7 +15,7 @@ struct NotificationListView: View {
     var body: some View {
         NavigationView {
             
-            List {
+            List{
                 ForEach(viewModel.filteredNotifications, id: \.identifier) { notification in
                     VStack {
                         Text(notification.content.body)
@@ -28,13 +28,13 @@ struct NotificationListView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .foregroundColor(.primary)
                         
-                        /* Button(action: {
-                         viewModel.removePendingNotifications(with: notification.identifier)
-                         }) {
-                         Text("Remove")
-                         .foregroundColor(.red)
-                         
-                         }*/
+                      /*  Button(action: {
+                            viewModel.removePendingNotifications(with: notification.identifier)
+                        }) {
+                            Text("Remove")
+                                .foregroundColor(.red)
+                            
+                        }*/
                     }
                     .padding(8)
                     .cornerRadius(8)
@@ -68,7 +68,6 @@ struct NotificationListView: View {
                 
                 viewModel.removePendingNotifications(with: notification.identifier)
             }
-            viewModel.removePendingNotifications(with: "")
         }
     
 }

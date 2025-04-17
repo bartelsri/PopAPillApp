@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class DatesViewModel {
+public class DatesViewModel: ObservableObject {
 
    /// Title for the notification
    var title: String = ""
