@@ -37,8 +37,8 @@ struct SettingsView: View {
                                     }
                                 
                                 }
+                            
                             Section(header: Text("Receive Alerts")){
-                                
                             }
                             
                             
