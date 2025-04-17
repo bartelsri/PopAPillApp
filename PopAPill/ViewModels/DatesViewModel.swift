@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class DatesViewModel {
+public class DatesViewModel: ObservableObject {
 
    /// Title for the notification
    var title: String = ""
    /// Id for each element in list
-   var iD: String = UUID().uuidString
+   var id: String = UUID().uuidString
    /// Time and date for each element in list
    var minute: Int?
    var hour: Int?

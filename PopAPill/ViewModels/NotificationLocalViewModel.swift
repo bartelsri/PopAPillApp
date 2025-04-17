@@ -49,22 +49,22 @@ public class NotificationLocalViewModel: ObservableObject {
             
             }
                 
-            
+            DispatchQueue.main.async{
                 self.filteredNotifications = filteredRequests
-            
-         }
-     }
-    func removePendingNotifications(with identifer: String){
-      UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifer])
+            }
+        }
+    }
+    func removePendingNotifications(with identifier: String){
+      UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
          
-         if let index = self.filteredNotifications.firstIndex(where: { $0.identifier == identifer}) {
+         if let index = self.filteredNotifications.firstIndex(where: { $0.identifier == identifier}) {
              self.filteredNotifications.remove(at: index)
          }
              
          
      }
     // Notification trigger that gets converted into a string
-       func formateDate(from trigger: UNNotificationTrigger?) -> String {
+       func formatDate(from trigger: UNNotificationTrigger?) -> String {
            // Access date components for scheduling
 
            guard let trigger = trigger as? UNCalendarNotificationTrigger,
