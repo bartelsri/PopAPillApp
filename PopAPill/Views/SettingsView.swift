@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct SettingsView: View {
     @StateObject var viewModel = PopAPillViewModel()
@@ -54,21 +55,24 @@ struct SettingsView: View {
                                                     //message showing user their was an error requesting notifs
                                                     alertMessage = "Notification error: \(error.localizedDescription)"
                                                     showAlert = true
+                                                    notificationsEnabled = false
+                                                    return
                                                     }
-                                                   //if user said no to notifs
-                                                   else if !granted{
-                                                    //message showing the user that they denied notifs
+                                                   //if user said yes to notifs
+                                                   if granted{
+                                                    //message showing the user that notifs are turned on
+                                                    alertMessage = "Notifications successfully turned on"
+                                                    showAlert = true
+
+                                                    notificationsEnabled = true
+                                                  }
+                                                  //if user said no to notifs
+                                                  else{
+                                                    //message showing the user that notifs are turned off
                                                     alertMessage = "Notification authorization was denied. Please enable them in Settings"
                                                     showAlert = true
                                                     //reset toggle
                                                     notificationsEnabled = false
-                                                  }
-                                                  //if user said yes to notifs
-                                                  else{
-                                                    //message showing the user that notifs are turned on
-                                                    alertMessage = "Notifications successfully turned on"
-                                                    showAlert = true
-                                                    notificationsEnabled = true
                                                   }
                                                }
                                             }
@@ -119,6 +123,12 @@ struct SettingsView: View {
             }
             .onAppear {
                 viewModel.fetchUser()
+                //showing if toggle is enabled or disabled for notification settings
+                UNUserNotificationCenter.current().getNotificationSettings { settings in
+                    DispatchQueue.main.async{
+                        notificationsEnabled = settings.authorizationStatus == .authorized
+                    }
+                }
                 
             }
             //UI showing when the notifs are denied or there is an error
