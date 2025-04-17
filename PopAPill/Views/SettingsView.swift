@@ -13,60 +13,58 @@ struct SettingsView: View {
     var body: some View {
             
             
-            VStack{
-                if let user = viewModel.user{
-                    
-                    
-                    VStack(alignment: .leading){
-                        Form{
-                            Section(header: Text("Personal Information")){
-                                HStack {
-                                    Text("Name: ")
-                                    Text(user.name)
-                                }
-                                .listRowSeparator(.hidden)
-                                HStack {
-                                    Text("Email: ")
-                                    Text(user.email)
-                                }
-                                .listRowSeparator(.hidden)
-                                HStack{
-                                    Text("Member Since: ")
-                                        .listRowSeparator(.hidden)
-                                    Text("\(Date(timeIntervalSince1970:user.joined).formatted(date: .abbreviated, time: .shortened))")
-                                    }
-                                
-                                }
-                            
-                            Section(header: Text("Receive Alerts")){
+        VStack{
+            if let user = viewModel.user{
+                
+                
+                VStack(alignment: .leading){
+                    Form{
+                        Section(header: Text("Personal Information")){
+                            HStack {
+                                Text("Name: ")
+                                Text(user.name)
                             }
-                            
-                            
-                            
-                            
-                                Section(header: Text("Login")){
-                                    Button("Log Out"){
-                                        viewModel.logOut()
-                                    }
-                                    .tint(Color.red)
-                                }
+                            .listRowSeparator(.hidden)
+                            HStack {
+                                Text("Email: ")
+                                Text(user.email)
+                            }
+                            .listRowSeparator(.hidden)
+                            HStack{
+                                Text("Member Since: ")
+                                    .listRowSeparator(.hidden)
+                                Text("\(Date(timeIntervalSince1970:user.joined).formatted(date: .abbreviated, time: .shortened))")
                             }
                             
                         }
                         
+                        Section(header: Text("Receive Alerts")){
+                            
+                        }
+                            
+                            Section(header: Text("Login")){
+                                Button("Log Out"){
+                                    viewModel.logOut()
+                                }
+                                .tint(Color.red)
+                            }
+                        }
                         
                     }
+                    
+                    
+                }
                 else {
                     Text("...loading...")
-                       
+                    
                 }
                 
             }
-            .onAppear {
-                viewModel.fetchUser()
-                
-            }
-    
+                .onAppear {
+                    viewModel.fetchUser()
+                    
+                }
+            //UI showing when the notifs are denied or there is an error
         
     }
 }
