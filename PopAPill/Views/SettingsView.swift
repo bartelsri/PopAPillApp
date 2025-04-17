@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var viewModel = PopAPillViewModel()
+    @State private var notificationsEnabled = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
             
@@ -37,19 +40,71 @@ struct SettingsView: View {
                                     }
                                 
                                 }
+                            //toggle for enabling notifications
                             Section(header: Text("Receive Alerts")){
-                                
+                                Toggle("Enable Notifications", isOn: $notificationsEnabled)
+                                    .onChange(of: notificationsEnabled) { value in
+                                        //when toggle is ON
+                                        if value{
+                                            //asking user for authorization to send notifs
+                                            UNUserNotificationCenter.current().requestAuthorization(options:[.alert, .sound, .badge]) {granted, error in
+                                                DispatchQueue.main.async{
+                                                //if an error occurred
+                                                   if let error = error{
+                                                    //message showing user their was an error requesting notifs
+                                                    alertMessage = "Notification error: \(error.localizedDescription)"
+                                                    showAlert = true
+                                                    }
+                                                   //if user said no to notifs
+                                                   else if !granted{
+                                                    //message showing the user that they denied notifs
+                                                    alertMessage = "Notification authorization was denied. Please enable them in Settings"
+                                                    showAlert = true
+                                                    //reset toggle
+                                                    notificationsEnabled = false
+                                                  }
+                                                  //if user said yes to notifs
+                                                  else{
+                                                    //message showing the user that notifs are turned on
+                                                    alertMessage = "Notifications successfully turned on"
+                                                    showAlert = true
+                                                    notificationsEnabled = true
+                                                  }
+                                               }
+                                            }
+                                        }
+                                    }
+                              // if the notifications are disabled
+                              if !notificationsEnabled{
+                                //send user a message saying they can enable them in Settings
+                                Text("Notifications are currently off. You can enable them in Settings")
+                                    .font(.footnote)
+                                    //mauve color for foreground
+                                    .foregroundColor((Color(red: 0.7, green: 0.4, blue: 0.6)))
+                                    .padding(.top)
+                                    .padding(.bottom, 4)
+                                //pop up sending user to notification settings
+                                Button(action: {
+                                    if let appSettings = URL(string: UIApplication.openSettingsURLString),
+                                        UIApplication.shared.canOpenURL(appSettings){
+                                            UIApplication.shared.open(appSettings)
+                                    }
+                                }) {
+                                    //customizing message to mauve color
+                                    Text("Open Notification Settings")
+                                        .foregroundColor((Color(red: 1.0, green: 0.81, blue: 0.86)))
+                                        .fontWeight(.semibold)
+                                   }
+                              }
                             }
                             
-                            
-                            
-                            
-                                Section(header: Text("Login")){
-                                    Button("Log Out"){
-                                        viewModel.logOut()
-                                    }
-                                    .tint(Color.red)
-                                }
+
+                        Section(header: Text("Login")){
+                            Button("Log Out"){
+                                viewModel.logOut()
+                            }
+                            .tint(Color.red)
+                        }
                             }
                             
                         }
@@ -66,8 +121,10 @@ struct SettingsView: View {
                 viewModel.fetchUser()
                 
             }
-    
-        
+            //UI showing when the notifs are denied or there is an error
+            .alert(isPresented: $showAlert){
+                Alert(title: Text("Notification settings"), message: Text(alertMessage), dismissButton: .default(Text("Ok")))
+            }
     }
 }
 
