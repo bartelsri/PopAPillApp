@@ -13,7 +13,7 @@ public class DatesViewModel: ObservableObject {
    /// Title for the notification
    var title: String = ""
    /// Id for each element in list
-   var id: String = UUID().uuidString
+   var iD: String = UUID().uuidString
    /// Time and date for each element in list
    var minute: Int?
    var hour: Int?
@@ -33,6 +33,9 @@ public class DatesViewModel: ObservableObject {
 
        )
    }
+
+    
+    
 
    /// Func for creating date objects
    private func createDate(year: Int, month: Int, day: Int, hour: Int, minute: Int) -> Date {

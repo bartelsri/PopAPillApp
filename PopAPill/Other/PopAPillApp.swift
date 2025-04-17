@@ -11,7 +11,7 @@ import UserNotifications
 @main
 struct PopAPillApp: App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    
+    @StateObject private var viewModel = MedReportViewModel()
     init() {
         FirebaseApp.configure()
     }
@@ -20,9 +20,12 @@ struct PopAPillApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+            
         }
+        .environmentObject(viewModel)
     }
 }
+
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -41,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Notifications not granted")
             }
         }
+        
+    
         
         //Observer to reset the badge when the app is active
         NotificationCenter.default.addObserver(self, selector: #selector(resetBadge), name: UIApplication.didBecomeActiveNotification, object: nil)

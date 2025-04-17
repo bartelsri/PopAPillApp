@@ -54,17 +54,17 @@ public class NotificationLocalViewModel: ObservableObject {
             }
         }
     }
-    func removePendingNotifications(with identifier: String){
-      UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    func removePendingNotifications(with identifer: String){
+      UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifer])
          
-         if let index = self.filteredNotifications.firstIndex(where: { $0.identifier == identifier}) {
+         if let index = self.filteredNotifications.firstIndex(where: { $0.identifier == identifer}) {
              self.filteredNotifications.remove(at: index)
          }
              
          
      }
     // Notification trigger that gets converted into a string
-       func formatDate(from trigger: UNNotificationTrigger?) -> String {
+       func formateDate(from trigger: UNNotificationTrigger?) -> String {
            // Access date components for scheduling
 
            guard let trigger = trigger as? UNCalendarNotificationTrigger,
