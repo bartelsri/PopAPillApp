@@ -15,12 +15,13 @@ class LoginViewModel: ObservableObject {
     @Published var errorM = ""         //error message
     @Published var showError = false //flag to show error message
     @Published var isProvider = false //checks whether provider or user
+    @Published var isLoggedIn = false // flag for login success
     
     init() {
     }
     
     //Function to handle user input before an attemptt\
-    func login()  {
+    func login(onSuccess: @escaping () -> Void)  {
         
         guard validate(isProvider: isProvider) else {
             showError = true
@@ -47,6 +48,12 @@ class LoginViewModel: ObservableObject {
                 //Else user has successfuly logged
                 self.errorM = ""
                 self.showError = false
+                
+                //save role to userDefaults
+                UserDefaults.standard.set(self.isProvider, forKey: "userRole")
+                //triger navigation
+                //self.isLoggedIn = true
+                onSuccess() //triggers navigation
             }
         }
         
@@ -85,8 +92,4 @@ class LoginViewModel: ObservableObject {
         }
         return true
     }
-    
-    
-    
-    
 }

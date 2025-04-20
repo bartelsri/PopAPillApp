@@ -14,6 +14,11 @@ class MainViewModel: ObservableObject {
     @Published var currID: String = ""
     //Firebase Auth state listener handler
     private var handler: AuthStateDidChangeListenerHandle?
+    //handling roles
+    var isProvider: Bool {
+        UserDefaults.standard.bool(forKey: "userRole")
+    }
+
     
     init() {
         // Adds listener to observe authentication state changes
