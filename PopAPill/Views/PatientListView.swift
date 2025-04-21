@@ -6,6 +6,7 @@
 //
 //View of a list of patients and selecting one to view/modify their meds
 
+import Foundation
 import SwiftUI
 
 struct Patient: Identifiable{

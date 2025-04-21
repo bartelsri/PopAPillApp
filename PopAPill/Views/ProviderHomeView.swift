@@ -6,20 +6,60 @@
 //
 // home page if logged in as health care provider with toggle
 //  on login page
-//based on PopAPillView
+//structure based on PopAPillView
+//NOT DONE
 
 import SwiftUI
 
 struct ProviderHomeView: View {
     @StateObject var viewModel = PopAPillViewModel()
+    @State private var selectedPatient: Patient? = nil //so i can use PatientListView as a destination
     
-    //three items that belong to the user
+
+    
+    //ItemView specifically for ProviderHomeView - based on ItemView from PopAPillView
+    struct ProviderItemView: View {
+        let item: ProviderItem
+
+        var body: some View {
+          
+            VStack(spacing:5) {
+                    //image for each of the items in the list
+                    Image(systemName: item.image)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(item.imageColor)
+                        .frame(width:50)
+                    
+                    //text for each of the items in the list
+                    Text(item.title)
+                        .bold()
+                        .fontDesign(.rounded)
+                        .foregroundColor(.white)
+                }
+                .frame(width: 350, height:150)
+                .background(Color(red: 1.0, green: 0.81, blue: 0.86))
+                .clipShape(RoundedRectangle(cornerRadius:20))
+                .shadow(color: Color.black.opacity(0.17), radius: 10,y: 5)
+
+        }
+    }
+    
+    //redefining item structure
+    struct ProviderItem: Identifiable {
+        let id = UUID()
+        let title: String
+        let image: String
+        let imageColor: Color
+    }
+
+    
+    //items that belong to the HCP
     let items = [
-        Item(title: "Patient List", image: "text.page.fill", imageColor: .white, destination: AnyView(ProfileView())),
-        Item(title: "Medication History", image: "heart.text.clipboard.fill", imageColor: .white, destination:AnyView(MedHistoryView())),
-                 /*Item(title: "Provider", image: "stethoscope", imageColor: .white, destination: AnyView(ProfileView())) //CORRECT DESTINATION (create HC provider page?) AND SPACING OF UI*/
+        ProviderItem(title: "Patient List", image: "text.page.fill", imageColor: .white),
+        ProviderItem(title: "Non-Adhering Patients", image: "heart.text.clipboard.fill", imageColor: .white)
     ]
-    
+
     
     let spacing: CGFloat = 10
     @State private var numberOfRows = 1
@@ -65,15 +105,18 @@ struct ProviderHomeView: View {
                 
                 //grid containing the items
                 LazyVGrid(columns: colum, spacing: spacing){
+                    //destinations for the items
                     ForEach(items) { item in
-                        
-                        NavigationLink(destination: item.destination) {
-                            ItemView(item: item)
+                        NavigationLink(destination: {
+                            if item.title == "Patient List" {
+                                PatientListView(selectedPatient: $selectedPatient)
+                            } else {
+                                MedHistoryView()
+                            }
+                        }) {
+                            ProviderItemView(item: item)
                         }
-                        
-                        
                     }
-                    
                 }
                 .offset(y:-170)
                 .background(Color.white)
