@@ -14,9 +14,7 @@ import SwiftUI
 struct ProviderHomeView: View {
     @StateObject var viewModel = PopAPillViewModel()
     @State private var selectedPatient: Patient? = nil //so i can use PatientListView as a destination
-    
 
-    
     //ItemView specifically for ProviderHomeView - based on ItemView from PopAPillView
     struct ProviderItemView: View {
         let item: ProviderItem
@@ -57,7 +55,7 @@ struct ProviderHomeView: View {
     //items that belong to the HCP
     let items = [
         ProviderItem(title: "Patient List", image: "text.page.fill", imageColor: .white),
-        ProviderItem(title: "Non-Adhering Patients", image: "heart.text.clipboard.fill", imageColor: .white)
+        ProviderItem(title: "Non-Adhering Patients", image: "clock.fill", imageColor: .white)
     ]
 
     
