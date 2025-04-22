@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 struct Patient: Identifiable{
-    //identifier for patient
+    // identifier for patient
     var id = UUID()
     //name of patient
     var name: String
