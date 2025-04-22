@@ -28,6 +28,7 @@ struct PatientListView: View{
                 .font(.largeTitle)
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
+
             List(viewModel.patients) {user in
                 HStack{
                     //showing the names of patients in white color
