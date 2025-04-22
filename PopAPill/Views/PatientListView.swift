@@ -24,15 +24,15 @@ struct PatientListView: View{
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
-            List(viewModel.patients) {user in
+            List(viewModel.patients) {patient in
                 HStack{
                     //showing the names of patients in white color
-                    Text(user.name)
+                    Text(patient.name)
                         .foregroundColor(.white)
                     Spacer()
                     //showing the Select button (to select the patient) with a mauve button and white text
                     Button("Select"){
-                        selectedPatient = user
+                        selectedPatient = patient
                     }
                     .buttonStyle(BorderlessButtonStyle())
                     .foregroundColor(.white)
