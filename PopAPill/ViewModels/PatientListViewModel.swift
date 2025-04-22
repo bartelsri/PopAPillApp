@@ -41,11 +41,7 @@ class PatientListViewModel: ObservableObject {
             // convert each firestore document into a patient model
             DispatchQueue.main.async{
                 self.patients = documents.compactMap { doc in
-                    guard let user = User(document: doc.data(), id: doc.documentID)
-                    else{
-                        return nil
-                    }
-                    return Patient(id: UUID(), name: user.name)
+                    return User(document: doc.data(), id: doc.documentID)
                 }
             }
         }

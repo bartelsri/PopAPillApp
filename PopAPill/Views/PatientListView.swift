@@ -18,7 +18,7 @@ struct Patient: Identifiable{
 
 struct PatientListView: View{
     //binding to hold selected patient
-    @Binding var selectedPatient: Patient?
+    @Binding var selectedPatient: User?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
     //list of patients (hard coded)    4/21 - commented this out so we can pull actual data
@@ -36,15 +36,15 @@ struct PatientListView: View{
                 .font(.largeTitle)
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
-            List(viewModel.patients) {patient in
+            List(viewModel.patients) {user in
                 HStack{
                     //showing the names of patients in white color
-                    Text(patient.name)
+                    Text(user.name)
                         .foregroundColor(.white)
                     Spacer()
                     //showing the Select button (to select the patient) with a mauve button and white text
                     Button("Select"){
-                        selectedPatient = patient
+                        selectedPatient = user
                     }
                     .buttonStyle(BorderlessButtonStyle())
                     .foregroundColor(.white)
