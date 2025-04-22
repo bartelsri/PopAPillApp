@@ -14,12 +14,6 @@ struct PatientListView: View{
     @Binding var selectedPatient: User?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
-    //list of patients (hard coded)    4/21 - commented this out so we can pull actual data
-//    @State private var patients: [Patient] = [
-//        Patient(name: "Jack Johnson"),
-//        Patient(name: "Suzy Craw"),
-//        Patient(name: "Anna Heather")
-//    ]
 
     var body: some View{
         VStack{
