@@ -6,35 +6,24 @@
 //
 //View of a list of patients and selecting one to view/modify their meds
 
+import Foundation
 import SwiftUI
-
-struct Patient: Identifiable{
-    //identifier for patient
-    var id = UUID()
-    //name of patient
-    var name: String
-}
 
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: User?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
-    //list of patients (hard coded)    4/21 - commented this out so we can pull actual data
-//    @State private var patients: [Patient] = [
-//        Patient(name: "Jack Johnson"),
-//        Patient(name: "Suzy Craw"),
-//        Patient(name: "Anna Heather")
-//    ]
 
     var body: some View{
         VStack{
             //showing "Patient List" as header in  a mauve/purple color
             Text("Patient List")
-                .padding(30)
+                .padding(40)
                 .font(.largeTitle)
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
+
             List(viewModel.patients) {user in
                 HStack{
                     //showing the names of patients in white color
@@ -55,7 +44,7 @@ struct PatientListView: View{
             }
 
         }
-        .navigationTitle("Select Patient")
+        //.navigationTitle("Select Patient")  //don't need this? Patient's name will be next to select button
         //entire background of page is the signature Pop-A-Pill pink
         .background(Color(red: 1.0, green: 0.81, blue: 0.86))
         .ignoresSafeArea()

@@ -41,7 +41,17 @@ class PatientListViewModel: ObservableObject {
             // convert each firestore document into a patient model
             DispatchQueue.main.async{
                 self.patients = documents.compactMap { doc in
-                    return User(document: doc.data(), id: doc.documentID)
+                    // initialize User from firestore data
+                    let data = doc.data()
+                    if let id = doc.documentID as? String,
+                       let name = data["name"] as? String,
+                       let email = data["email"] as? String,
+                       let joined = data["joined"] as? TimeInterval{
+                            return User(id: id, name: name, email: email, joined: joined)
+                       }
+
+                       return nil
+
                 }
             }
         }
@@ -54,24 +64,3 @@ class PatientListViewModel: ObservableObject {
 
 }
 
-// user model extension for initializing a user object from Firestore data
-extension User{
-    //initializes a user model from firestore document dictionary
-    init?(document: [String: Any], id: String){
-        // unwrap properties from firestore document
-        guard let name = document["name"] as? String,
-              let email = document["email"] as? String,
-              let joined = document["joined"] as? TimeInterval
-              else{
-                    // return nil if any fields are missing
-                    return nil
-              }
-
-
-        //assign unwrapped properties to user model
-        self.id = id
-        self.name = name
-        self.email = email
-        self.joined = joined
-    }
-}

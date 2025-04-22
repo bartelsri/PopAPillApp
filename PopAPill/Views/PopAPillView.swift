@@ -22,7 +22,7 @@ struct PopAPillView: View {
     
     //three items that belong to the user
     let items = [Item(title: "Receive Alerts", image: "bell.and.waves.left.and.right.fill", imageColor: .white, destination: AnyView(ReceiveAlertsView().environmentObject(ReceiveAlertsViewModel()))),
-        Item(title: "Confirm Medication", image: "questionmark.text.page.fill", imageColor: .white, destination: AnyView(ConfirmMedView())),
+                 Item(title: "Confirm Medication", image: "questionmark.text.page.fill", imageColor: .white, destination: AnyView(ConfirmMedView())),
         Item(title: "Medication History", image: "heart.text.clipboard.fill", imageColor: .white, destination:AnyView(MedHistoryView())),
                  /*Item(title: "Provider", image: "stethoscope", imageColor: .white, destination: AnyView(ProfileView())) //CORRECT DESTINATION (create HC provider page?) AND SPACING OF UI*/
     ]
