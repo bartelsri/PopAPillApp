@@ -8,13 +8,6 @@
 
 import SwiftUI
 
-struct Patient: Identifiable{
-    //identifier for patient
-    var id = UUID()
-    //name of patient
-    var name: String
-}
-
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: User?
