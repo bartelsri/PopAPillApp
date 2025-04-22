@@ -26,7 +26,7 @@ class MedReportViewModel: ObservableObject {
             if let documents = snapshot?.documents {
                 self.entries = documents.compactMap { doc in
                     //turn data into swift object
-                    return EntriesViewModel.fromDictionary(doc.data())
+                    return EntriesViewModel.fromDictionary(dict: doc.data(), documentID: doc.documentID)
                 }
             }
             //otherwise, data was not grabbed successfully so display error message
