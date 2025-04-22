@@ -11,9 +11,9 @@ class ConfirmMedViewModel: ObservableObject {
 
   
     @Published var medName = ""
-     @Published var medDosage = ""
-     @Published var medFrequency = ""
-     @Published var medForm = ""
+    @Published var medDosage = ""
+    @Published var medFrequency = ""
+    @Published var medForm = ""
     @Published var medDate: Date = Date()
     @Published var medTime: Date = Date()
     @Published var medConfirmation = ""
