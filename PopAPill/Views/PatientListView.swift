@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PatientListView: View{
     //binding to hold selected patient
-    @Binding var selectedPatient: User?
+    @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
 
