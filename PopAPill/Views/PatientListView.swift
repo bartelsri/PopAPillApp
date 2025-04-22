@@ -17,13 +17,16 @@ struct Patient: Identifiable{
 }
 
 struct PatientListView: View{
+    //binding to hold selected patient
     @Binding var selectedPatient: Patient?
-    //list of patients (hard coded)
-    @State private var patients: [Patient] = [
-        Patient(name: "Jack Johnson"),
-        Patient(name: "Suzy Craw"),
-        Patient(name: "Anna Heather")
-    ]
+    //viewModel for fetching patients
+    @ObservedObject private var viewModel = PatientListViewModel()
+    //list of patients (hard coded)    4/21 - commented this out so we can pull actual data
+//    @State private var patients: [Patient] = [
+//        Patient(name: "Jack Johnson"),
+//        Patient(name: "Suzy Craw"),
+//        Patient(name: "Anna Heather")
+//    ]
 
     var body: some View{
         VStack{
@@ -33,7 +36,7 @@ struct PatientListView: View{
                 .font(.largeTitle)
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
-            List(patients) {patient in 
+            List(viewModel.patients) {patient in
                 HStack{
                     //showing the names of patients in white color
                     Text(patient.name)
@@ -57,6 +60,10 @@ struct PatientListView: View{
         //entire background of page is the signature Pop-A-Pill pink
         .background(Color(red: 1.0, green: 0.81, blue: 0.86))
         .ignoresSafeArea()
+        .onAppear{
+            //load patients
+            viewModel.loadPatients()
+        }
     }
 }
 
