@@ -13,7 +13,7 @@ struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
-    @ObservedObject private var viewModel = PatientListViewModel()
+   // @ObservedObject private var viewModel = PatientListViewModel()
 
     //list of patients (hard coded)
     @State private var patients: [Patient] = [
