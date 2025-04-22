@@ -6,6 +6,7 @@
 //
 //View of a list of patients and selecting one to view/modify their meds
 
+import Foundation
 import SwiftUI
 
 struct PatientListView: View{
@@ -24,7 +25,7 @@ struct PatientListView: View{
         VStack{
             //showing "Patient List" as header in  a mauve/purple color
             Text("Patient List")
-                .padding(30)
+                .padding(40)
                 .font(.largeTitle)
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
@@ -49,7 +50,7 @@ struct PatientListView: View{
             }
 
         }
-        .navigationTitle("Select Patient")
+        //.navigationTitle("Select Patient")  //don't need this? Patient's name will be next to select button
         //entire background of page is the signature Pop-A-Pill pink
         .background(Color(red: 1.0, green: 0.81, blue: 0.86))
         .ignoresSafeArea()
