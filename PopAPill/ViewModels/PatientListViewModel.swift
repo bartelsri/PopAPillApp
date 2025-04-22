@@ -5,6 +5,7 @@
 //  Created by bartelsri on 4/21/25.
 //
 
+/**
 import Foundation
 import FirebaseFirestore
 
@@ -60,8 +61,9 @@ class PatientListViewModel: ObservableObject {
 
     //initialize and load patients when view model is created
     init(){
-        loadPatients()
+       loadPatients()
     }
 
 }
 
+*/
