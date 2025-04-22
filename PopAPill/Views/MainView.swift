@@ -14,13 +14,18 @@ struct MainView: View {
     var body: some View {
             //Shows from the login view view if signed in
         if viewModel.isSignedIn, !viewModel.currID.isEmpty {
+            //checking role
+            //let isProvider = UserDefaults.standard.bool(forKey: "userRole")
             
-            TabView{
-                PopAPillView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                
+            if viewModel.isProvider {
+                ProviderHomeView()
+            } else {
+                TabView{
+                    PopAPillView()
+                        .tabItem {
+                            Label("Home", systemImage: "house")
+                        }
+                }
                
                 
               /*  ProfileView()
