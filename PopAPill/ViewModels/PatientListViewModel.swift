@@ -11,8 +11,8 @@ import FirebaseFirestore
 class PatientListViewModel: ObservableObject {
 
     // list of patients that the view will observe and display
-    @Published var patients: [User] = []
-    @Published var errorM: String?
+    @Published var patients: [Patient] = []
+    @Published var errorM: String? = nil
 
     // load patient data from Firestore
     func loadPatients(){
@@ -43,11 +43,12 @@ class PatientListViewModel: ObservableObject {
                 self.patients = documents.compactMap { doc in
                     // initialize User from firestore data
                     let data = doc.data()
-                    if let id = doc.documentID as? String,
+                    if let id = doc.documentID,
                        let name = data["name"] as? String,
                        let email = data["email"] as? String,
                        let joined = data["joined"] as? TimeInterval{
-                            return User(id: id, name: name, email: email, joined: joined)
+                            let patient = Patient(id: id, name: name, email: email, joined: joined)
+                            return patient
                        }
 
                        return nil
