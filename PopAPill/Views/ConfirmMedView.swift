@@ -55,10 +55,17 @@ struct ConfirmMedView: View {
                 time: viewModel.medTime
                     
             )
-            
-            reportHistory.addEntry(newEntry)
-            
-            dismiss()
+
+            //if user is logged in
+            if let userId = Auth.auth().currentUser?.uid{
+                //add new entry and saves it to firebase database
+                reportHistory.addEntry(newEntry, for: userId)
+                dismiss()
+
+            }
+            else{
+                print("User is not logged in. It cannot be saved")
+            }
             
         }
     
