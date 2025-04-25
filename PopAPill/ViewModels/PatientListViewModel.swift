@@ -5,7 +5,7 @@
 //  Created by bartelsri on 4/21/25.
 //
 
-/**
+
 import Foundation
 import FirebaseFirestore
 
@@ -42,17 +42,8 @@ class PatientListViewModel: ObservableObject {
             // convert each firestore document into a patient model
             DispatchQueue.main.async{
                 self.patients = documents.compactMap { doc in
-                    // initialize User from firestore data
                     let data = doc.data()
-                    if let id = doc.documentID,
-                       let name = data["name"] as? String,
-                       let email = data["email"] as? String,
-                       let joined = data["joined"] as? TimeInterval{
-                            let patient = Patient(id: id, name: name, email: email, joined: joined)
-                            return patient
-                       }
-
-                       return nil
+                    return Patient(from: data, id: doc.documentID)
 
                 }
             }
@@ -66,4 +57,3 @@ class PatientListViewModel: ObservableObject {
 
 }
 
-*/
