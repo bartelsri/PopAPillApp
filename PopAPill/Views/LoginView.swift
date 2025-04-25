@@ -16,7 +16,7 @@ enum Destination: Hashable {
 
 struct LoginView: View {
     @StateObject  var viewModel = LoginViewModel()
-    //@State private var isProvider = false
+    @State private var isProvider = false
     @State private var destination: Destination?
     
     

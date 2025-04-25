@@ -15,6 +15,11 @@ class RegisterViewModel: ObservableObject {
     @Published var password = ""
     @Published var name = ""
     @Published var errorM = ""
+    //
+    @Published var isProvider = false //checks whether provider or user
+    @Published var providerID = ""
+    //
+    //@Published var registrationComplete = false
     
     
     init(){}
@@ -31,6 +36,9 @@ class RegisterViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     self?.errorM = error.localizedDescription
+                    //
+                    //try? Auth.auth().signOut()
+                    //self?.registrationComplete = true
                 }
                 return
             }
