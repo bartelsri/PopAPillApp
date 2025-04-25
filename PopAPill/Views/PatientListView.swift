@@ -8,12 +8,13 @@
 
 import Foundation
 import SwiftUI
+/*
 struct Patient: Identifiable{
     // identifier for patient
     var id = UUID()
     //name of patient
     var name: String
-}
+}*/
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: Patient?
@@ -36,7 +37,7 @@ struct PatientListView: View{
                 .padding()
                 .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
-            List(patients) {patient in
+            List(viewModel.patients) {patient in
                 HStack{
                     //showing the names of patients in white color
                     Text(patient.name)
