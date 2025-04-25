@@ -34,7 +34,7 @@ struct EntriesViewModel: Identifiable, Codable {
     }
 
     //converting from firestore format to swift
-    static func fromDictionary(_dict: [String: Any], documentID:String) -> EntriesViewModel? {
+    static func fromDictionary(_ dict: [String: Any], documentID:String) -> EntriesViewModel? {
         guard
         let name = dict["name"] as? String,
         let dosage = dict["dosage"] as? Int,
