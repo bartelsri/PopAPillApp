@@ -18,26 +18,7 @@ struct EntriesViewModel: Identifiable, Codable {
     let sideEffects: String
     let date: Date
     let time: Date
-
-    //converting from firestore format to swift
-    static func fromDictionary(dict: [String: Any]) -> EntriesViewModel? {
-        guard let idString = dict["id"] as? String,
-        let id = UUID(uuidString: idString),
-        let name = dict["name"] as? String,
-        let dosage = dict["dosage"] as? Int,
-        let confirmation = dict["confirmation"] as? String,
-        let sideEffects = dict["sideEffects"] as? String,
-        let dateTimestamp = dict["date"] as? Timestamp,
-        let timeTimestamp = dict["time"] as? Timestamp else{
-            print("Error parsing dictionary to EntriesViewModel")
-            return nil
-        }
-
-        let dateValue = dateTimestamp.dateValue()
-        let timeValue = timeTimestamp.dateValue()
-
-        return EntriesViewModel(id: id, name: name, dosage: dosage, confirmation: confirmation, sideEffects: sideEffects, date: dateValue, time: timeValue)
-    }
+    var documentID: String?
 
     //converting Swift variables to firestore format
     func toDictionary() -> [String: Any]{
@@ -47,8 +28,25 @@ struct EntriesViewModel: Identifiable, Codable {
             "dosage": dosage,
             "confirmation": confirmation,
             "sideEffects": sideEffects,
-            "date": Timestamp(date: date),
-            "time": Timestamp(date: time)
+            "date": date,
+            "time": time
         ]
+    }
+
+    //converting from firestore format to swift
+    static func fromDictionary(_dict: [String: Any], documentID:String) -> EntriesViewModel? {
+        guard
+        let name = dict["name"] as? String,
+        let dosage = dict["dosage"] as? Int,
+        let confirmation = dict["confirmation"] as? String,
+        let sideEffects = dict["sideEffects"] as? String,
+        let date = dict["date"] as? Timestamp,
+        let time = dict["time"] as? Timestamp,
+        let idString = dict["id"] as? String,
+        let uuid = UUID(uuidString: idString)
+        else{
+            return nil
+        }
+        return EntriesViewModel(id: uuid, name: name, dosage: dosage, confirmation: confirmation, sideEffects: sideEffects, date: date.dateValue(), time: time.dateValue(), documentID: documentID)
     }
 }
