@@ -22,11 +22,11 @@ class MedReportViewModel: ObservableObject {
         db.collection("users").document(userId).collection("medications").order(by: "date", descending: true)
         //getting data from firebase database
         .getDocuments{ snapshot, error in
-            //if data grabbing was successful, go through each document the database
+            //if data grabbing was successful, go through each document in the database
             if let documents = snapshot?.documents {
                 self.entries = documents.compactMap { doc in
                     //turn data into swift object
-                    return EntriesViewModel.fromDictionary(doc.data())
+                    return EntriesViewModel.fromDictionary(doc.data(), documentID: doc.documentID)
                 }
             }
             //otherwise, data was not grabbed successfully so display error message
