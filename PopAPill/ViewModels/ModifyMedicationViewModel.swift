@@ -100,7 +100,11 @@ class ModifyMedicationViewModel: ObservableObject{
         }
 
         // Create a new Medication
-        let newMedication = Medication(id: nil, name: medName, dosage: dosage, unit: unit, frequency: frequency)
+        let newMedication = Medication(from: [
+            "name" : medName,
+            "dosage" : dosage ?? 0,
+            "unit" : unit,
+            "frequency" : frequency ?? 0 ], id: nil)
 
         // Save to Firestore
         let docRef = db.collection("users")
@@ -135,7 +139,11 @@ class ModifyMedicationViewModel: ObservableObject{
         }
 
         // Update medication with the new details
-        let updatedMedication = Medication(id: selectedMedication.id, name: medName, dosage: dosage, unit: unit, frequency: frequency)
+        let updatedMedication = Medication(from: [
+            "name" : medName,
+            "dosage" : dosage ?? 0,
+            "unit" : unit,
+            "frequency" : frequency ?? 0 ], id: selectedMedication.id)
 
         // Update the medication in Firestore
         db.collection("users")
