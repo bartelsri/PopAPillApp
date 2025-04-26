@@ -8,26 +8,13 @@
 
 import Foundation
 import SwiftUI
-/*
-struct Patient: Identifiable{
-    // identifier for patient
-    var id = UUID()
-    //name of patient
-    var name: String
-}*/
+
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
 
-  /*  //list of patients (hard coded)
-    @State private var patients: [Patient] = [
-        Patient(name: "Jack Johnson"),
-        Patient(name: "Suzy Craw"),
-        Patient(name: "Anna Heather")
-    ]
-*/
     var body: some View{
         VStack{
             //showing "Patient List" as header in  a mauve/purple color
@@ -54,6 +41,8 @@ struct PatientListView: View{
                     .cornerRadius(8)
                 }
                 .padding()
+                .background(Color(red: 0.7, green: 0.4, blue: 0.6)) // <— ADD THIS
+                .cornerRadius(8)
             }
 
         }
