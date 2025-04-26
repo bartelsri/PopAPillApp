@@ -52,16 +52,37 @@ class RegisterViewModel: ObservableObject {
         
         
     }
+    
     //takes the user id
     private func insertUser(id: String ){
-        let newUser =  User(id: id,
-                            name: name,
-                            email: email,
-                            joined: Date().timeIntervalSince1970)
-        //into database
-        let db = Firestore.firestore()
+        //create user for provider
+        if isProvider == true {
+            let newUser = ProviderUser(id : id,
+                               name: name,
+                               email: email,
+                               providerID: providerID,
+                               joined: Date().timeIntervalSince1970)
+            //into database
+            let db = Firestore.firestore()
+            
+            db.collection("users").document(id).setData(newUser.asDictionary() )
+        }
         
-        db.collection("users").document(id).setData(newUser.asDictionary() )
+        //create user for patient
+        else {
+            let newUser =  User(id: id,
+                                name: name,
+                                email: email,
+                                joined: Date().timeIntervalSince1970)
+            //into database
+            let db = Firestore.firestore()
+            
+            db.collection("users").document(id).setData(newUser.asDictionary() )
+        }
+        //into database
+        //let db = Firestore.firestore()
+        
+        //db.collection("users").document(id).setData(newUser.asDictionary() )
     }
     
     private func validate () -> Bool {
@@ -83,9 +104,15 @@ class RegisterViewModel: ObservableObject {
             errorM = "Password must be at least 6 characters long"
             return false
         }
+        
+        //validating hcp role
+        if isProvider == true {
+            guard providerID.count == 10 && providerID.allSatisfy({$0.isNumber}) else {
+                errorM = "Enter a valid 10-digit NPI ID"
+                return false
+            }
+        }
         return true
     }
-    
-        
     
 }
