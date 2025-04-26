@@ -100,7 +100,7 @@ class ModifyMedicationViewModel: ObservableObject{
         }
 
         // Create a new Medication
-        let newMedication = Medication(from: [
+        var newMedication = Medication(from: [
             "name" : medName,
             "dosage" : dosage ?? 0,
             "unit" : unit,
