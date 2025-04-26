@@ -100,14 +100,14 @@ class ModifyMedicationViewModel: ObservableObject{
         }
 
         // Create a new Medication
-        var newMedication = Medication(from: [
+        let newMedication = Medication(from: [
             "name" : medName,
             "dosage" : dosage ?? 0,
             "unit" : unit,
             "frequency" : frequency ?? 0 ], id: nil)
 
         // Save to Firestore
-        let docRef = db.collection("users")
+        db.collection("users")
             .document(patientID)
             .collection("medications")
             .addDocument(data: newMedication.toDict()) { error in
@@ -120,7 +120,7 @@ class ModifyMedicationViewModel: ObservableObject{
                 }
 
                 DispatchQueue.main.async {
-                    newMedication.id = docRef.documentID // generated firestore id
+                    self.loadMedications(for: patientID)
                     self.errorM = "Medication added successfully"
                     self.showError = false
                 }
