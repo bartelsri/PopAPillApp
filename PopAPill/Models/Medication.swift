@@ -23,7 +23,7 @@ struct Medication: Identifiable, Codable {
     }
 
     // initialize from firestore doc
-    init(from data: [String: Any], id: String? = nil){
+    init(from data: [String: Any], id: String?){
         self.id = id
         self.name = data["name"] as? String ?? ""
         self.dosage = data["dosage"] as? Int ?? 0
