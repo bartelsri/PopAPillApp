@@ -112,10 +112,10 @@ struct RegisterView: View {
                                 //attempt to login
                                 
                                 //navigate to login view after acct created
-                               // if registerViewModel.isSuccessful {
-                                    //destination = .loginView
-                                //}
-                                
+                                //if registerViewModel.isSuccessful {
+                                  //  destination = .loginView()
+                            //    },
+                            
                                 
                             }
                             .offset(y:280)

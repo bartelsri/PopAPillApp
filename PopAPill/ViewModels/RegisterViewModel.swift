@@ -19,7 +19,7 @@ class RegisterViewModel: ObservableObject {
     @Published var isProvider = false //checks whether provider or user
     @Published var providerID = ""
     //
-    //@Published var registrationComplete = false
+    @Published var registrationComplete = false
     
     
     init(){}
@@ -55,6 +55,10 @@ class RegisterViewModel: ObservableObject {
     
     //takes the user id
     private func insertUser(id: String ){
+       //database
+        let db = Firestore.firestore()
+        
+        let userData: [String: Any]
         //create user for provider
         if isProvider == true {
             let newUser = ProviderUser(id : id,
@@ -62,10 +66,7 @@ class RegisterViewModel: ObservableObject {
                                email: email,
                                providerID: providerID,
                                joined: Date().timeIntervalSince1970)
-            //into database
-            let db = Firestore.firestore()
-            
-            db.collection("users").document(id).setData(newUser.asDictionary() )
+            userData = newUser.asDictionary()
         }
         
         //create user for patient
@@ -74,11 +75,33 @@ class RegisterViewModel: ObservableObject {
                                 name: name,
                                 email: email,
                                 joined: Date().timeIntervalSince1970)
-            //into database
-            let db = Firestore.firestore()
-            
-            db.collection("users").document(id).setData(newUser.asDictionary() )
+            userData = newUser.asDictionary()
         }
+            //write to firestone with completion handler
+            db.collection("users").document(id).setData(userData){ error in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.errorM = "Failed to save user: \(error.localizedDescription)"
+                    }
+                    return
+                }
+                do {
+                    try Auth.auth().signOut()
+                } catch {
+                    print("Error signing out: \(error.localizedDescription)")
+                }
+                DispatchQueue.main.async {
+                    self.registrationComplete = true
+            }
+        }
+        
+        //sign out after registration (redirected back to login page)
+       /* try? Auth.auth().signOut()
+        //trigger navigation but to login screen
+        DispatchQueue.main.async {
+            self.registrationComplete = true
+        }*/
+        
         //into database
         //let db = Firestore.firestore()
         
