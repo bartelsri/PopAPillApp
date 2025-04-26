@@ -6,7 +6,8 @@
 
 import Foundation
 
-struct Medication: Codable {
+struct Medication: Identifiable, Codable {
+   var id: String?  // firestore doc id
    let name: String
    let dosage: Int
    let unit: String
@@ -22,7 +23,8 @@ struct Medication: Codable {
     }
 
     // initialize from firestore doc
-    init(from data: [String: Any]){
+    init(from data: [String: Any], id: String? = nil){
+        self.id = id
         self.name = data["name"] as? String ?? ""
         self.dosage = data["dosage"] as? Int ?? 0
         self.unit = data["unit"] as? String ?? ""
