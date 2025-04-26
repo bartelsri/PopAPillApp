@@ -46,7 +46,7 @@ class RegisterViewModel: ObservableObject {
                 self?.errorM = "Could not create user"
                 return
             }
-            self?.insertUser(id: userId )
+            self?.insertUser(id: userId)
             
         }
         
@@ -107,6 +107,11 @@ class RegisterViewModel: ObservableObject {
         
         //validating hcp role
         if isProvider == true {
+            
+            guard !providerID.trimmingCharacters(in: .whitespaces).isEmpty else {
+                errorM = "Please fill all fields"
+                return false
+            }
             guard providerID.count == 10 && providerID.allSatisfy({$0.isNumber}) else {
                 errorM = "Enter a valid 10-digit NPI ID"
                 return false
