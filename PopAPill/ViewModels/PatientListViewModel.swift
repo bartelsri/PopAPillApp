@@ -43,8 +43,15 @@ class PatientListViewModel: ObservableObject {
             DispatchQueue.main.async{
                 self.patients = documents.compactMap { doc in
                     let data = doc.data()
-                    return Patient(from: data, id: doc.documentID)
+                    let patient = Patient(from: data, id: doc.documentID)
 
+                    if let patient = patient {
+                        print("Loaded Patient: \(patient.name)")
+                    }
+                    else{
+                        print("Failed to parse patient for doc ID: \(doc.documentID)")
+                    }
+                    return patient
                 }
             }
         }
