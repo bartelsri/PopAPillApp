@@ -14,6 +14,8 @@ struct PatientListView: View{
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
+    
+    @State private var destination: Destination?
 
     var body: some View{
         NavigationView{
@@ -26,20 +28,24 @@ struct PatientListView: View{
                     .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
                 List(viewModel.patients) {patient in
-                    HStack{
-                        //showing the names of patients in white color
-                        Text(patient.name)
+                    NavigationLink(destination: PatientProfileView(patient: patient), tag: patient, selection: $selectedPatient){
+                        
+                        
+                        HStack{
+                            //showing the names of patients in white color
+                            Text(patient.name)
+                                .foregroundColor(.white)
+                            Spacer()
+                            //showing the Select button (to select the patient) with a mauve button and white text
+                            /*Button("Select"){
+                                selectedPatient = patient
+                            }*/
+                            .buttonStyle(BorderlessButtonStyle())
                             .foregroundColor(.white)
-                        Spacer()
-                        //showing the Select button (to select the patient) with a mauve button and white text
-                        Button("Select"){
-                            selectedPatient = patient
+                            .padding(8)
+                            //.background(Color(red: 0.7, green: 0.4, blue: 0.6))
+                            .cornerRadius(8)
                         }
-                        .buttonStyle(BorderlessButtonStyle())
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color(red: 0.7, green: 0.4, blue: 0.6))
-                        .cornerRadius(8)
                     }
                     .padding()
                     .background(Color(red: 1.0, green: 0.7, blue: 0.8))

@@ -12,7 +12,7 @@ import Foundation
 import SwiftUI
 
 //declaring Medication
-struct PatientMedication: Identifiable { //is Medication already declared? where?
+/*struct PatientMedication: Identifiable { //is Medication already declared? where?
     var id = UUID()
     var name: String
     var dosage: Int
@@ -55,4 +55,13 @@ struct PatientProfileView: View {
             }
         }
     }
+}*/
+struct PatientProfileView: View {
+    var patient: Patient
+
+    var body: some View {
+        Text("Viewing profile for \(patient.name)")
+    }
 }
+
+

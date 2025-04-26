@@ -6,7 +6,7 @@ import Foundation
 //  Created by bartelsri on 4/21/25
 //
 
-struct Patient: Identifiable, Codable {
+struct Patient: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let email: String
