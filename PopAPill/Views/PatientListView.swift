@@ -46,15 +46,14 @@ struct PatientListView: View{
                     .cornerRadius(8)
                 }
 
+                //entire background of page is the signature Pop-A-Pill pink
+                .background(Color(red: 1.0, green: 0.81, blue: 0.86))
+                .ignoresSafeArea()
             }
-        }
-        //.navigationTitle("Select Patient")  //don't need this? Patient's name will be next to select button
-        //entire background of page is the signature Pop-A-Pill pink
-        .background(Color(red: 1.0, green: 0.81, blue: 0.86))
-        .ignoresSafeArea()
-        .onAppear{
-            //load patients
-            viewModel.loadPatients()
+            .onAppear{
+                //load patients
+                viewModel.loadPatients()
+            }
         }
     }
 }
