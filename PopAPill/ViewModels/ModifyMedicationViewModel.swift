@@ -6,6 +6,7 @@
 //ViewModel backend for when provider places inputs for medication
 
 import Foundation
+import FirebaseFirestore
 
 class ModifyMedicationViewModel: ObservableObject{
     //name of patient medication
