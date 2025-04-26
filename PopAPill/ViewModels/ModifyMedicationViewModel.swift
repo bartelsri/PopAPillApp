@@ -100,14 +100,13 @@ class ModifyMedicationViewModel: ObservableObject{
         }
 
         // Create a new Medication
-        let newMedication = Medication(id: UUID().uuidString, name: medName, dosage: dosage, unit: unit, frequency: frequency)
+        let newMedication = Medication(id: nil, name: medName, dosage: dosage, unit: unit, frequency: frequency)
 
         // Save to Firestore
-        db.collection("users")
+        let docRef = db.collection("users")
             .document(patientID)
             .collection("medications")
-            .document(newMedication.id)
-            .setData(newMedication.toDict()) { error in
+            .addDocument(data: newMedication.toDict()) { error in
                 if let error = error {
                     DispatchQueue.main.async {
                         self.errorM = "Error adding medication: \(error.localizedDescription)"
@@ -117,6 +116,7 @@ class ModifyMedicationViewModel: ObservableObject{
                 }
 
                 DispatchQueue.main.async {
+                    newMedication.id = docRef.documentID // generated firestore id
                     self.errorM = "Medication added successfully"
                     self.showError = false
                 }
@@ -141,7 +141,7 @@ class ModifyMedicationViewModel: ObservableObject{
         db.collection("users")
             .document(patientID)
             .collection("medications")
-            .document(selectedMedication.id)
+            .document(selectedMedication.id ?? "") // unwrap id
             .setData(updatedMedication.toDict(), merge: true) { error in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -168,7 +168,7 @@ class ModifyMedicationViewModel: ObservableObject{
         db.collection("users")
             .document(patientID)
             .collection("medications")
-            .document(selectedMedication.id)
+            .document(selectedMedication.id ?? "") //unwrap id
             .delete { error in
                 if let error = error {
                     DispatchQueue.main.async {
