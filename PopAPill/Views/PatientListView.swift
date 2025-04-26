@@ -28,7 +28,8 @@ struct PatientListView: View{
                     .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
                 List(viewModel.patients) {patient in
-                    NavigationLink(destination: PatientProfileView(patient: patient), tag: patient, selection: $selectedPatient){
+                    NavigationLink(
+                        destination: PatientProfileView(patientId: patient.id, viewModel: PatientProfileViewModel(patientId: patient.id)), tag: patient, selection: $selectedPatient){
                         
                         
                         HStack{
