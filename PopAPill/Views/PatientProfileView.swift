@@ -12,7 +12,7 @@ import SwiftUI
 
 //profile page structure
 struct PatientProfileView: View {
-    @StateObject var viewModel: PatientProfileViewModel
+    @ObservedObject var viewModel: PatientProfileViewModel
     var patient: Patient
     var patientId: String
 

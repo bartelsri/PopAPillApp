@@ -17,12 +17,13 @@ class PatientProfileViewModel: ObservableObject {
         self.patientId = patientId
         fetchPatientMedications()
     }
+    
 
     // Fetch medications for the patient from Firestore
     func fetchPatientMedications() {
         let db = Firestore.firestore()
         
-        db.collection("patients").document(patientId).getDocument { (document, error) in
+        db.collection("users").document(patientId).getDocument { (document, error) in
             if let error = error {
                 print("Error fetching document: \(error)")
                 return

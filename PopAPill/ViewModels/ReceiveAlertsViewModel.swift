@@ -31,7 +31,7 @@ class ReceiveAlertsViewModel: ObservableObject {
     
     
     
-    func schedule(not: Not ) async{
+   /* func schedule(not: Not ) async{
         let content = UNMutableNotificationContent()
         content.title = not.title
         content.body = not.body
@@ -44,7 +44,7 @@ class ReceiveAlertsViewModel: ObservableObject {
         
         await getListRequests( )
 
-    }
+    }*/
     
 }
 

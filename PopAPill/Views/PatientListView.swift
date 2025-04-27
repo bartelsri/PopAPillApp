@@ -14,6 +14,7 @@ struct PatientListView: View{
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
+    @State private var patientProfileViewModel = PatientProfileViewModel(patientId: "")
     
     @State private var destination: Destination?
 
@@ -27,7 +28,7 @@ struct PatientListView: View{
                     .padding()
                     .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
-                List(viewModel.patients) {patient in
+                ForEach(viewModel.patients) {patient in
                     NavigationLink(
                         destination: PatientProfileView(patientId: patient.id, viewModel: PatientProfileViewModel(patientId: patient.id)), tag: patient, selection: $selectedPatient){
                         
@@ -67,6 +68,11 @@ struct PatientListView: View{
 
 struct PatientListView_Previews: PreviewProvider{
     static var previews: some View{
-        PatientListView(selectedPatient: .constant(nil))
+        PatientListView(selectedPatient: .constant(nil),
+                        name = "",
+                        id = "",
+                        email: "",
+                        joined: Date())
+        return PatientListView()
     }
 }
