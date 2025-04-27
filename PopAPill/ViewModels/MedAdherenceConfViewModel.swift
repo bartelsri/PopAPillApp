@@ -23,7 +23,9 @@ class MedAdherenceConfViewModel: ObservableObject{
         errorM = ""
         confirmationSuccess = false
 
-        
+        /*guard validate() else{
+            return
+        }*/
 
         guard let userID = Auth.auth().currentUser?.uid else{
             errorM = "User not logged in"

@@ -19,7 +19,6 @@ struct EntriesViewModel: Identifiable, Codable {
     let date: Date
     let time: Date
     var documentID: String?
-    
     //converting Swift variables to firestore format
     func toDictionary() -> [String: Any]{
         return[
@@ -34,9 +33,8 @@ struct EntriesViewModel: Identifiable, Codable {
     }
 
     //converting from firestore format to swift
-    static func fromDictionary(dict: [String: Any], documentID: String) -> EntriesViewModel? {
+    static func fromDictionary(_ dict: [String: Any], documentID:String) -> EntriesViewModel? {
         guard
-       
         let name = dict["name"] as? String,
         let dosage = dict["dosage"] as? Int,
         let confirmation = dict["confirmation"] as? String,
@@ -48,18 +46,6 @@ struct EntriesViewModel: Identifiable, Codable {
         else{
             return nil
         }
-
-        
-
-        return EntriesViewModel(id: uuid,
-                                name: name,
-                                dosage: dosage,
-                                confirmation: confirmation,
-                                sideEffects: sideEffects,
-                                date: date.dateValue(),
-                                time: time.dateValue(),
-                                documentID: documentID
-        )
+        return EntriesViewModel(id: uuid, name: name, dosage: dosage, confirmation: confirmation, sideEffects: sideEffects, date: date.dateValue(), time: time.dateValue(), documentID: documentID)
     }
-
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 struct ConfirmMedView: View {
     
     @State private var showTime: Bool = false

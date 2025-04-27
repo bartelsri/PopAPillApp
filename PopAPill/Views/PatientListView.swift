@@ -15,50 +15,46 @@ struct PatientListView: View{
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
 
-    //list of patients (hard coded)
-    @State private var patients: [Patient] = [
-        Patient(name: "Jack Johnson"),
-        Patient(name: "Suzy Craw"),
-        Patient(name: "Anna Heather")
-    ]
-
     var body: some View{
-        VStack{
-            //showing "Patient List" as header in  a mauve/purple color
-            Text("Patient List")
-                .padding(40)
-                .font(.largeTitle)
-                .padding()
-                .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
+        NavigationView{
+            VStack{
+                //showing "Patient List" as header in  a mauve/purple color
+                Text("Patient List")
+                    .padding(40)
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
-            List(patients) {patient in
-                HStack{
-                    //showing the names of patients in white color
-                    Text(patient.name)
+                List(viewModel.patients) {patient in
+                    HStack{
+                        //showing the names of patients in white color
+                        Text(patient.name)
+                            .foregroundColor(.white)
+                        Spacer()
+                        //showing the Select button (to select the patient) with a mauve button and white text
+                        Button("Select"){
+                            selectedPatient = patient
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
                         .foregroundColor(.white)
-                    Spacer()
-                    //showing the Select button (to select the patient) with a mauve button and white text
-                    Button("Select"){
-                        selectedPatient = patient
+                        .padding(8)
+                        .background(Color(red: 0.7, green: 0.4, blue: 0.6))
+                        .cornerRadius(8)
                     }
-                    .buttonStyle(BorderlessButtonStyle())
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color(red: 0.7, green: 0.4, blue: 0.6))
+                    .padding()
+                    .background(Color(red: 1.0, green: 0.7, blue: 0.8))
                     .cornerRadius(8)
                 }
-                .padding()
-            }
 
+                //entire background of page is the signature Pop-A-Pill pink
+                .background(Color(red: 1.0, green: 0.81, blue: 0.86))
+                .ignoresSafeArea()
+            }
+            .onAppear{
+                //load patients
+                viewModel.loadPatients()
+            }
         }
-        //.navigationTitle("Select Patient")  //don't need this? Patient's name will be next to select button
-        //entire background of page is the signature Pop-A-Pill pink
-        .background(Color(red: 1.0, green: 0.81, blue: 0.86))
-        .ignoresSafeArea()
-      //  .onAppear{
-            //load patients
-       //     viewModel.loadPatients()
-      //  }
     }
 }
 

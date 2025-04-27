@@ -7,7 +7,17 @@
 
 import SwiftUI
 
-/* struct ModifyMedView: View{
+ struct ModifyMedView: View{
+
+    @StateObject var viewModel = ModifyMedicationViewModel()
+    @Binding var selectedPatient: Patient?
+
+    @State private var medicationName = ""
+    @State private var dosage: Int = 0
+    @State private var unit = ""
+    @State private var frequency: Int = 0
+
+    @State private var showError = false
 
     var body : some View {
 
@@ -18,50 +28,94 @@ import SwiftUI
                 Text("Select Patient")
                 .font(.headline)
                 .padding()
+                .background(Color(red: 0.7, green: 0.4, blue: 0.6))
+                .cornerRadius(8)
+            }
+
+            //show current meds
+            if let selectedPatient = selectedPatient{
+                //show selected patient's current medications
+                Text("Current Medications for \(selectedPatient.name)")
+                .font(.title2)
+                .padding()
+
+                //list medications
+                List(viewModel.medications){
+                    medication in HStack{
+                        Text(medication.name)
+                        Spacer()
+                        Text("\(medication.dosage ?? 0) \(medication.unit) \(medication.frequency ?? 0) time(s) a day")
+                    }
+                    .onTapGesture{
+                        viewModel.selectedMedication = medication
+                        medicationName = medication.name
+                        dosage = medication.dosage ?? 0
+                        unit = medication.unit
+                        frequency = medication.frequency ?? 0
+                    }
+
+                }
+
+
+                // adding/updating medication
+                VStack{
+                    TextField("Medication", text: $medicationName)
+                        .padding()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Dosage", value: $dosage, formatter: NumberFormatter())
+                        .padding()
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Unit", text: $unit)
+                        .padding()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField("Frequency", value: $frequency, formatter: NumberFormatter())
+                        .padding()
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    if viewModel.showError{
+                        Text(viewModel.errorM)
+                            .foregroundColor(.red)
+                            .padding()
+                    }
+
+                    //add / update meds button
+                    Button(action: {
+                        viewModel.medName = medicationName
+                        viewModel.dosage = dosage
+                        viewModel.unit = unit
+                        viewModel.frequency = frequency
+
+                        if viewModel.selectedMedication == nil{
+                            // add new
+                            viewModel.addMedication(for: selectedPatient.id)
+                        }
+                        else{
+                            // update selected
+                            viewModel.updateMedication(for: selectedPatient.id)
+                        }
+                    })
+                        {
+                        Text(viewModel.selectedMedication == nil ? "Add Medication" : "Update Medication")
+                            .font(.headline)
+                            .padding()
+                            .background(Color(red: 0.7, green: 0.4, blue: 0.6))
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                        }
+                    }
+                .padding()
             }
         }
 
-        if let selectedPatient = selectedPatient{
-            //show selected patient's current medications
-            Text("Current Medications for \(selectedPatient.name)")
-            .font(.title)
-            .padding()
-
-            //list medications
-            List(medicationList){
-                medication in HStack{
-                    Text(medication.name)
-                    Spacer()
-                    Text("\(medication.dosage) \(medication.unit) \(medication.frequency) time(s) a day")
-                }
-                .onTapGesture{
-                    selectedMedication = medication
-                }
-
+        .onAppear{
+            if let selectedPatient = selectedPatient{
+                viewModel.loadMedications(for: selectedPatient.id)
             }
         }
-
-        //navigate to 'update medication'
-
-        //select existing medication
-
-        //update dosage
-
-        //update unit
-
-        //update frequency
-
-        //add new medication
-
-        //new medication dosage
-
-        //new medication unit
-
-        //new medication frequency
-
-
-
-
     }
-
-} */
+}
