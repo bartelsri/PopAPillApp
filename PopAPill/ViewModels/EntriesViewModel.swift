@@ -19,7 +19,6 @@ struct EntriesViewModel: Identifiable, Codable {
     let date: Date
     let time: Date
     var documentID: String?
-
     //converting Swift variables to firestore format
     func toDictionary() -> [String: Any]{
         return[
