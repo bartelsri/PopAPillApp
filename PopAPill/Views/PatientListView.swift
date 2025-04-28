@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-/*
+
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: Patient?
@@ -30,7 +30,8 @@ struct PatientListView: View{
 
                 ForEach(viewModel.patients) {patient in
                     NavigationLink(
-                        destination: PatientProfileView(patientId: patient.id, viewModel: PatientProfileViewModel(patientId: patient.id)), tag: patient, selection: $selectedPatient){
+                        destination: PatientProfileView(viewModel: PatientProfileViewModel(patientId: patient.id), patient: patient, patientId: patient.id),
+                        tag: patient.id, selection: $selectedPatient){
                         
                         
                         HStack{
@@ -68,11 +69,10 @@ struct PatientListView: View{
 
 struct PatientListView_Previews: PreviewProvider{
     static var previews: some View{
-        PatientListView(selectedPatient: .constant(nil),
-                        name = "",
-                        id = "",
-                        email: "",
-                        joined: Date())
-        return PatientListView()
+        // test dummy patient object for preview
+        let dummyPatient = Patient(id: "1", name: "Test Dummy", email: "dummy@preview.com", joined: Date())
+
+        // dummy selection binding
+        return PatientListView(selectedPatient: .constant(dummyPatient))
     }
-}*/
+}
