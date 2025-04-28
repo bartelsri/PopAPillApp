@@ -14,9 +14,9 @@ struct PatientListView: View{
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
-    @State private var patientProfileViewModel =    PatientProfileViewModel(patientId: "")
+  //  @State private var patientProfileViewModel = PatientProfileViewModel(patientId: "")
     
-    @State private var destination: Destination?
+   // @State private var destination: Destination?
 
     var body: some View{
         NavigationView{
@@ -30,7 +30,11 @@ struct PatientListView: View{
 
                 ForEach(viewModel.patients) {patient in
                     NavigationLink(
-                        destination: PatientProfileView(viewModel: PatientProfileViewModel(patientId: patient.id), patient: patient, patientId: patient.id),
+                        destination: PatientProfileView(
+                        viewModel: PatientProfileViewModel(patientId: patient.id),
+                        patient: patient,
+                        patientId: patient.id),
+
                         tag: patient.id, selection: $selectedPatient){
                         
                         
@@ -70,9 +74,14 @@ struct PatientListView: View{
 struct PatientListView_Previews: PreviewProvider{
     static var previews: some View{
         // test dummy patient object for preview
-        let dummyPatient = Patient(id: "1", name: "Test Dummy", email: "dummy@preview.com", joined: Date())
+        let patientPreviewData: [String: Any] = [
+            "name": "Test Dummy",
+            "email": "dummy@preview.com",
+            "joined": Date().timeIntervalSince1970,
+            "medications": []
+        ]
+        let dummyPatient = Patient(from: patientPreviewData, id: "1")!
 
-        // dummy selection binding
         return PatientListView(selectedPatient: .constant(dummyPatient))
     }
 }
