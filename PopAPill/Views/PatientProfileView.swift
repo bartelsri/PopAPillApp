@@ -16,6 +16,13 @@ struct PatientProfileView: View {
     var patient: Patient
     var patientId: String
 
+    //initialize viewModel inside view using patientId
+    init(patient: Patient, patientId: String) {
+        self.patient = patient
+        self.patientId = patientId
+        self._viewModel = StateObject(wrappedValue: PatientProfileViewModel(patientId: patientId))
+    }
+
     
     var body: some View {
         ScrollView {
