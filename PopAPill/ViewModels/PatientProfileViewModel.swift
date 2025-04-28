@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class PatientProfileViewModel: ObservableObject {
-    @Published var medications: [Medication] = [] // Published array to store medications
+    /*@Published var medications: [Medication] = [] // Published array to store medications
     var patientId: String
 
     init(patientId: String) {
@@ -42,5 +42,5 @@ class PatientProfileViewModel: ObservableObject {
                 self.medications = [] // Set medications to an empty array if not available
             }
         }
-    }
+    }*/
 }

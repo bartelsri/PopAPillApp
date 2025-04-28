@@ -8,13 +8,13 @@
 
 import Foundation
 import SwiftUI
-
+/*
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
-    @State private var patientProfileViewModel = PatientProfileViewModel(patientId: "")
+    @State private var patientProfileViewModel =    PatientProfileViewModel(patientId: "")
     
     @State private var destination: Destination?
 
@@ -75,4 +75,4 @@ struct PatientListView_Previews: PreviewProvider{
                         joined: Date())
         return PatientListView()
     }
-}
+}*/
