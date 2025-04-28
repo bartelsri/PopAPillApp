@@ -24,11 +24,11 @@ struct PatientProfileView: View {
     }
 
     var body: some View{
-        Scroll View{
+        ScrollView{
             VStack{
-                HeaderView()
+                PatientProfileHeaderView()
                 PatientInfoView(patient: patient)
-                MedicationListView(viewModel: viewModel)
+                MedicationListView(viewModel: viewModel, patientId: patientId)
             }
             .padding(.top)
         }
@@ -36,7 +36,7 @@ struct PatientProfileView: View {
 }
 
 //header struct
-struct HeaderView: View{
+struct PatientProfileHeaderView: View{
     var body: some View {
             VStack {
                 RoundedRectangle(cornerRadius: 20)
@@ -78,6 +78,7 @@ struct PatientInfoView: View {
 //medication list section
 struct MedicationListView: View{
     @ObservedObject var viewModel: PatientProfileViewModel
+    var patientId: String
 
     var body: some View{
         VStack(alignment: .leading, spacing: 10){
