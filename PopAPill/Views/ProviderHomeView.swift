@@ -54,8 +54,8 @@ struct ProviderHomeView: View {
     
     //items that belong to the HCP
     let items = [
-        ProviderItem(title: "Patient List", image: "text.page.fill", imageColor: .white),
-        ProviderItem(title: "Non-Adhering Patients", image: "clock.fill", imageColor: .white)
+        ProviderItem(title: "Patient List", image: "text.page.fill", imageColor: .white)
+        /*ProviderItem(title: "Non-Adhering Patients", image: "clock.fill", imageColor: .white)*/
     ]
 
     
@@ -82,9 +82,15 @@ struct ProviderHomeView: View {
                     .foregroundColor(Color(red: 1.0, green: 0.81, blue: 0.86))
                     .shadow(color: Color.black.opacity(0.17), radius: 10,y: 5)
                 
-                    .frame(width: UIScreen.main.bounds.width * 3, height: 600)
+                    .frame(width: UIScreen.main.bounds.width * 3, height: 200)
                 
-                    .offset(y:-130)
+                    .offset(y:-280)
+                    
+                    Text("Provider Home Page")
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.white)
+                        .offset(y: -250)
                     
                     
                     //takes user to settings
@@ -97,7 +103,7 @@ struct ProviderHomeView: View {
                         .frame(width: 25, height: 15)
                        
                     }
-                    .offset(x: 152, y: -130)
+                    .offset(x: 152, y: -300)
 
                 }
                 
@@ -116,7 +122,7 @@ struct ProviderHomeView: View {
                         }
                     }
                 }
-                .offset(y:-170)
+                .offset(y:-250)
                 .background(Color.white)
                 
             }

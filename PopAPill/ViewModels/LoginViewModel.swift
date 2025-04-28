@@ -6,6 +6,7 @@
 //
 import FirebaseAuth
 import Foundation
+import FirebaseFirestore
 
 //viewModel for user login
 class LoginViewModel: ObservableObject {
@@ -27,6 +28,7 @@ class LoginViewModel: ObservableObject {
             showError = true
             return
         }
+        
         //login for user with Firebase Aurh
         Auth.auth().signIn(withEmail: email, password: password){ user, error in
             
@@ -49,14 +51,72 @@ class LoginViewModel: ObservableObject {
                 self.errorM = ""
                 self.showError = false
                 
-                //save role to userDefaults
-                UserDefaults.standard.set(self.isProvider, forKey: "userRole")
-                //triger navigation
-                //self.isLoggedIn = true
-                onSuccess() //triggers navigation
+                //check if user is a provider
+                guard let userId = user?.user.uid else{
+                    self.errorM = "User not found"
+                    self.showError = true
+                    return
+                }
+                
+                //retreving user info through user id
+                let db = Firestore.firestore()
+                db.collection("users").document(userId).getDocument {snapshot, error in
+                    
+                    if let error = error {
+                        self.errorM = "Error retreiving user data: \(error.localizedDescription)"
+                        self.showError = true
+                        return
+                    }
+                    
+                    guard let data = snapshot?.data() else {
+                        self.errorM = "User data not found"
+                        self.showError = true
+                        return
+                    }
+                    
+                    //debug
+                    print("isProvider: \(self.isProvider)")
+                    
+                    //check providerID if user is provider
+                    /*if self.isProvider {
+                        guard let storedProviderID = data["providerID"] as? String else{
+                            self.errorM = "No provider ID found"
+                            self.showError = true
+                            return
+                        }
+                        
+                        //compare input with provider ID in firestore
+                        if storedProviderID != self.providerID {
+                            self.errorM = "Provider ID does not match"
+                            self.showError = true
+                            return
+                        }
+                    }*/
+                    
+                    //determine is user is provider by checking if providerID exists
+                    if let storedProviderID = data["providerID"] as? String {
+                        //compare stored provider id and input
+                        if storedProviderID != self.providerID {
+                            self.errorM = "Provider ID does not match"
+                            self.showError = true
+                            return
+                        }
+                        //save roles
+                        UserDefaults.standard.set(true, forKey: "userRole")
+                    } else {
+                        //no provider id - treat as patient user
+                        UserDefaults.standard.set(false, forKey:"userRole")
+                    }
+                    
+                    //save role to userDefaults
+                    //UserDefaults.standard.set(self.isProvider, forKey: "userRole")
+                    //triger navigation
+                    //self.isLoggedIn = true
+                    
+                    onSuccess() //triggers navigation
+                }
             }
         }
-        
     }
     
     
@@ -89,6 +149,12 @@ class LoginViewModel: ObservableObject {
                 errorM = "Provider ID required"
                 return false
             }
+            //ensure it's a valid entry
+            guard providerID.count == 10 && providerID.allSatisfy({$0.isNumber}) else {
+                errorM = "Enter a valid 10-digit NPI ID"
+                return false
+            }
+
         }
         return true
     }

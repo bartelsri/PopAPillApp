@@ -5,6 +5,7 @@
 // created by bartelsri 3/26/25
 //View for provider to modify/add medications
 
+import Foundation
 import SwiftUI
 
  struct ModifyMedView: View{
@@ -119,3 +120,4 @@ import SwiftUI
         }
     }
 }
+

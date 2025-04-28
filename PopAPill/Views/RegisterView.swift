@@ -10,8 +10,14 @@ import SwiftUI
 
 
 struct RegisterView: View {
+    
+    //for button destination
+    //enum Destination: Hashable {
+      //  case loginView
+    //}
 
     @StateObject var registerViewModel = RegisterViewModel()
+    //@State private var destination: Destination? = nil
     
     var body: some View {
          
@@ -31,7 +37,7 @@ struct RegisterView: View {
                     RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(Color(red: 1.0, green: 0.71, blue: 0.76))
                         .frame(width: 350, height: 300)
-                        .offset(y:-150)
+                        .offset(y:-200)
                     
                     Image(systemName: "pill.circle.fill")
                         .resizable()
@@ -40,7 +46,7 @@ struct RegisterView: View {
                         .background(Color(red: 1.0, green: 0.81, blue: 0.86))
                         .clipShape(Circle())
                     
-                        .offset(y:-300)
+                        .offset(y:-350)
                     
                     
                     VStack {
@@ -58,7 +64,7 @@ struct RegisterView: View {
                         
                             .frame(height:45)
                             .cornerRadius(8)
-                            .offset(y:160)
+                            .offset(y:155)
                         
                         TextField( "Email Address", text: $registerViewModel.email)
                             .autocorrectionDisabled()
@@ -67,7 +73,7 @@ struct RegisterView: View {
                             .background(Color(.secondarySystemBackground))
                             .frame(height:45)
                             .cornerRadius(8)
-                            .offset(y:170)
+                            .offset(y:165)
                         
                         
                         SecureField( "Password", text: $registerViewModel.password)
@@ -75,7 +81,27 @@ struct RegisterView: View {
                             .background(Color(.secondarySystemBackground))
                             .frame(height:45)
                             .cornerRadius(8)
-                            .offset(y:180)
+                            .offset(y:175)
+                        
+                        //toggle for provider account
+                        Toggle(isOn: $registerViewModel.isProvider){
+                            Text("Are you a provider?")
+                                .font(.headline)
+                                //.offset(y:300)
+                                //.padding()
+                        }
+                        .offset(y:255)
+                        //.padding()
+                        //text field for provider ID if it is a provider
+                        if registerViewModel.isProvider{
+                            TextField("Provider ID", text: $registerViewModel.providerID)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .frame(height:45)
+                                .cornerRadius(8)
+                                .offset(y:145)
+                        }
+                        
                         
                         //login button
                         PAPButton(
@@ -85,9 +111,14 @@ struct RegisterView: View {
                                 registerViewModel.register()
                                 //attempt to login
                                 
+                                //navigate to login view after acct created
+                                //if registerViewModel.isSuccessful {
+                                  //  destination = .loginView()
+                            //    },
+                            
                                 
                             }
-                            .offset(y:180)
+                            .offset(y:280)
                     }
                     
                     //END OF VSTACK
@@ -103,6 +134,7 @@ struct RegisterView: View {
             
             
         }
+    
     
 }
         

@@ -15,6 +15,11 @@ class RegisterViewModel: ObservableObject {
     @Published var password = ""
     @Published var name = ""
     @Published var errorM = ""
+    //
+    @Published var isProvider = false //checks whether provider or user
+    @Published var providerID = ""
+    //
+    @Published var registrationComplete = false
     
     
     init(){}
@@ -31,6 +36,9 @@ class RegisterViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     self?.errorM = error.localizedDescription
+                    //
+                    //try? Auth.auth().signOut()
+                    //self?.registrationComplete = true
                 }
                 return
             }
@@ -38,22 +46,66 @@ class RegisterViewModel: ObservableObject {
                 self?.errorM = "Could not create user"
                 return
             }
-            self?.insertUser(id: userId )
+            self?.insertUser(id: userId)
             
         }
         
         
     }
+    
     //takes the user id
     private func insertUser(id: String ){
-        let newUser =  User(id: id,
-                            name: name,
-                            email: email,
-                            joined: Date().timeIntervalSince1970)
-        //into database
+       //database
         let db = Firestore.firestore()
         
-        db.collection("users").document(id).setData(newUser.asDictionary() )
+        let userData: [String: Any]
+        //create user for provider
+        if isProvider == true {
+            let newUser = ProviderUser(id : id,
+                               name: name,
+                               email: email,
+                               providerID: providerID,
+                               joined: Date().timeIntervalSince1970)
+            userData = newUser.asDictionary()
+        }
+        
+        //create user for patient
+        else {
+            let newUser =  User(id: id,
+                                name: name,
+                                email: email,
+                                joined: Date().timeIntervalSince1970)
+            userData = newUser.asDictionary()
+        }
+            //write to firestone with completion handler
+            db.collection("users").document(id).setData(userData){ error in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.errorM = "Failed to save user: \(error.localizedDescription)"
+                    }
+                    return
+                }
+                do {
+                    try Auth.auth().signOut()
+                } catch {
+                    print("Error signing out: \(error.localizedDescription)")
+                }
+                DispatchQueue.main.async {
+                    self.registrationComplete = true
+            }
+        }
+        
+        //sign out after registration (redirected back to login page)
+       /* try? Auth.auth().signOut()
+        //trigger navigation but to login screen
+        DispatchQueue.main.async {
+            self.registrationComplete = true
+        }*/
+        
+        //into database
+        //let db = Firestore.firestore()
+        
+        //db.collection("users").document(id).setData(newUser.asDictionary() )
     }
     
     private func validate () -> Bool {
@@ -75,9 +127,20 @@ class RegisterViewModel: ObservableObject {
             errorM = "Password must be at least 6 characters long"
             return false
         }
+        
+        //validating hcp role
+        if isProvider == true {
+            
+            guard !providerID.trimmingCharacters(in: .whitespaces).isEmpty else {
+                errorM = "Please fill all fields"
+                return false
+            }
+            guard providerID.count == 10 && providerID.allSatisfy({$0.isNumber}) else {
+                errorM = "Enter a valid 10-digit NPI ID"
+                return false
+            }
+        }
         return true
     }
-    
-        
     
 }

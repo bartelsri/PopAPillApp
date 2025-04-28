@@ -8,12 +8,15 @@
 
 import Foundation
 import SwiftUI
-
+/*
 struct PatientListView: View{
     //binding to hold selected patient
     @Binding var selectedPatient: Patient?
     //viewModel for fetching patients
     @ObservedObject private var viewModel = PatientListViewModel()
+    @State private var patientProfileViewModel =    PatientProfileViewModel(patientId: "")
+    
+    @State private var destination: Destination?
 
     var body: some View{
         NavigationView{
@@ -25,21 +28,26 @@ struct PatientListView: View{
                     .padding()
                     .foregroundColor(Color(red: 0.7, green: 0.4, blue: 0.6))
 
-                List(viewModel.patients) {patient in
-                    HStack{
-                        //showing the names of patients in white color
-                        Text(patient.name)
+                ForEach(viewModel.patients) {patient in
+                    NavigationLink(
+                        destination: PatientProfileView(patientId: patient.id, viewModel: PatientProfileViewModel(patientId: patient.id)), tag: patient, selection: $selectedPatient){
+                        
+                        
+                        HStack{
+                            //showing the names of patients in white color
+                            Text(patient.name)
+                                .foregroundColor(.white)
+                            Spacer()
+                            //showing the Select button (to select the patient) with a mauve button and white text
+                            /*Button("Select"){
+                                selectedPatient = patient
+                            }*/
+                            .buttonStyle(BorderlessButtonStyle())
                             .foregroundColor(.white)
-                        Spacer()
-                        //showing the Select button (to select the patient) with a mauve button and white text
-                        Button("Select"){
-                            selectedPatient = patient
+                            .padding(8)
+                            //.background(Color(red: 0.7, green: 0.4, blue: 0.6))
+                            .cornerRadius(8)
                         }
-                        .buttonStyle(BorderlessButtonStyle())
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color(red: 0.7, green: 0.4, blue: 0.6))
-                        .cornerRadius(8)
                     }
                     .padding()
                     .background(Color(red: 1.0, green: 0.7, blue: 0.8))
@@ -60,6 +68,11 @@ struct PatientListView: View{
 
 struct PatientListView_Previews: PreviewProvider{
     static var previews: some View{
-        PatientListView(selectedPatient: .constant(nil))
+        PatientListView(selectedPatient: .constant(nil),
+                        name = "",
+                        id = "",
+                        email: "",
+                        joined: Date())
+        return PatientListView()
     }
-}
+}*/

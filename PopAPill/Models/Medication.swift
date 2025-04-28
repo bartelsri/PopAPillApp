@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Medication: Identifiable, Codable {
+struct Medication: Identifiable, Codable, Hashable {
    var id: String?  // firestore doc id
    let name: String
    let dosage: Int
