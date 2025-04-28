@@ -31,11 +31,10 @@ struct PatientListView: View{
                 ForEach(viewModel.patients) {patient in
                     NavigationLink(
                         destination: PatientProfileView(
-                        viewModel: PatientProfileViewModel(patientId: patient.id),
                         patient: patient,
                         patientId: patient.id),
 
-                        tag: patient.id, selection: $selectedPatient){
+                        tag: patient, selection: $selectedPatient){
                         
                         
                         HStack{
